@@ -10,6 +10,44 @@ import azure.functions as func
 
 app = func.FunctionApp()
 def enviarMail():
+    html_content = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Documento PDF</title>
+    </head>
+    <body>
+        <h1>Este es un PDF generado desde HTML</h1>
+        <p>Este PDF ha sido generado y enviado usando WeasyPrint y SendGrid.</p>
+    </body>
+    </html>
+    """
+
+    # Generar el PDF desde HTML y mantenerlo en memoria
+    pdf_bytes_io = BytesIO()
+    HTML(string=html_content).write_pdf(target=pdf_bytes_io)
+    pdf_bytes_io.seek(0)  # Regresar al inicio del stream
+
+    # Codificar el PDF en memoria a base64
+    encoded_pdf = base64.b64encode(pdf_bytes_io.getvalue()).decode()
+
+    # Crear el mensaje de correo con SendGrid
+    message = Mail(
+        from_email='reservas@apartamentoscantabria.net',
+        to_emails='diegoechaure@gmail.com',
+        subject='PDF generado desde HTML',
+        html_content='<strong>Adjunto encontrarás el PDF generado......</strong>'
+    )
+
+    # Adjuntar el PDF codificado
+    attachment = Attachment()
+    attachment.file_content = FileContent(encoded_pdf)
+    attachment.file_type = FileType('application/pdf')
+    attachment.file_name = FileName('documento_generado.pdf')
+    attachment.disposition = Disposition('attachment')
+    message.attachment = attachment
+
     message = Mail(
     from_email='reservas@apartamentoscantabria.net',
     to_emails='diegoechaure@gmail.com',
