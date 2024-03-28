@@ -2,24 +2,19 @@
 import logging
 import os
 import base64
+import requests
 from io import BytesIO
 from weasyprint import HTML
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileType, Disposition
 import azure.functions as func
 
-app = func.FunctionApp()
-def enviarMail():
-    message = Mail(
-        from_email='from_email@example.com',
-        to_emails='to@example.com',
-        subject='Sending with Twilio SendGrid is Fun',
-        html_content='<strong>and easy to do anywhere, even with Python</strong>')
-    sg = SendGridAPIClient('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')
-    response = sg.send(message)
-    print(response.status_code)
-    print(response.body)
-    print(response.headers)
+def send_simple_message():
+	return requests.post(
+		"https://api.mailgun.net/v3/sandbox362f74d18132446fb3275a04b3426ccb.mailgun.org/messages",
+		auth=("api", "<PRIVATE_API_KEY>"),
+		data={"from": "Mailgun Sandbox <postmaster@sandbox362f74d18132446fb3275a04b3426ccb.mailgun.org>",
+			"to": "diego <diegoechaure@gmail.com>",
+			"subject": "Hello diego",
+			"text": "Congratulations diegoewewfewefw, you just sent an email fekaaaa with Mailgun! You are truly awesome!"})
 
 @app.schedule(schedule="0 0 10 * * *", arg_name="myTimer", run_on_startup=True,
               use_monitor=False) 
