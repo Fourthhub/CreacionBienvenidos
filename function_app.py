@@ -15,7 +15,7 @@ def enviarMail():
         to_emails='to@example.com',
         subject='Sending with Twilio SendGrid is Fun',
         html_content='<strong>and easy to do anywhere, even with Python</strong>')
-    sg = SendGridAPIClient("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")
+    sg = SendGridAPIClient('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')
     response = sg.send(message)
     print(response.status_code)
     print(response.body)
