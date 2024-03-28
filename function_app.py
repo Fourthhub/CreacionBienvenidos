@@ -40,7 +40,7 @@ def send_email_with_attachment(attachment_path):
     message = MIMEMultipart()
     message["From"] = sender_email
     message["To"] = "reservas@apartamentoscantabria.net"
-    message["Subject"] = subject
+    message["Subject"] = "Hellooo"
     message.attach(MIMEText("Aqui estan los bienvenidos", "plain"))
     # Adjuntar el PDF
     with open(attachment_path, "rb") as attachment:
