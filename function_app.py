@@ -17,9 +17,9 @@ def enviarMail(reservas,token):
 
     # Generar el HTML completo con 3 páginas
     full_html = "<html><head><title>Documento Multi-página</title></head><body>"
-    for reserva in reservas["result"]:
+    for reserva in reservas:
         direccionListing(token,reserva["listingMapId"])
-        full_html += html_template.format(
+        full_html += base_html.format(
             Apartamento=reserva["listingName"],
             Nombre=reserva["guestName"],
             Total_estancia=str(reserva["totalPrice"]) + " " + reserva["currency"],
