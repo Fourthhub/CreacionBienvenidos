@@ -20,20 +20,19 @@ def enviarMail(reservas,token):
     try:
         for reserva in reservas:
             listingID=reserva["listingMapId"]
-            direccionListing(token,listingID)
             full_html += base_html.format(
                 Apartamento=reserva["listingName"],
                 Nombre=reserva["guestName"],
                 Total_estancia=str(reserva["totalPrice"]) + " " + reserva["currency"],
                 Pagado="no se",
                 restante=reservas["remainingBalance"],
-                address="Ejemplo dirección",
+                address=direccionListing(token,listingID),
                 fechachekin=reserva["arrivalDate"],
                 fechacheckout=reserva["departureDate"],
                 Numero_de_huespeds=str(reserva["numberOfGuests"])
         ) + "<div style='page-break-after: always;'></div>"
     except Exception as e:
-        raise KeyError(f"La reserva no contiene 'listingMapId': {reservas}")
+        raise KeyError(f" fallo: {e}")
         
     full_html += "</body></html>"
     # Generar el PDF desde HTML y mantenerlo en memoria
