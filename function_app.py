@@ -1,6 +1,7 @@
 
 import logging
 import os
+from io import BytesIO
 from weasyprint import HTML
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileType, Disposition
