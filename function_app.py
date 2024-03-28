@@ -95,9 +95,11 @@ def reservasHoy(arrivalStartDate, arrivalEndDate,token):
         'Content-type': "application/json",
         'Cache-control': "no-cache",
     }
-
-    response = requests.get(url, headers=headers)
-    data = response.json()
+    try:
+        response = requests.get(url, headers=headers)
+        data = response.json()
+    except Exception as e:
+        raise SyntaxError(f"Error al procesar la reserva: {e}")
     return data
 
 def direccionListing(token,listingId):
