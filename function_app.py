@@ -121,6 +121,6 @@ def direccionListing(token,listingId):
 def crecionBienvenido(myTimer: func.TimerRequest) -> None:
     token = obtener_acceso_hostaway()
     hoy = datetime.now().strftime('%Y-%m-%d')
-    reservas= reservasHoy(hoy,hoy,URL_HOSTAWAY_TOKEN)
+    reservas= reservasHoy(hoy,hoy,token)
     enviarMail(reservas,token)
     logging.info('Python timer trigger function executed.')
