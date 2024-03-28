@@ -12,8 +12,8 @@ app = func.FunctionApp()
 def enviarMail():
 
     message = Mail(
-        from_email='reservas@apartamentoscantabria.net',
-        to_emails='reservas@apartamentoscantabria.net',
+        from_email='from_email@example.com',
+        to_emails='to@example.com',
         subject='Sending with Twilio SendGrid is Fun',
         html_content='<strong>and easy to do anywhere, even with Python</strong>')
     try:
