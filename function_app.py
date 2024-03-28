@@ -51,7 +51,7 @@ def enviarMail():
 
     # Enviar el correo electrónico
     try:
-        sg = SendGridAPIClient('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')
+        sg = SendGridAPIClient('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')
         response = sg.send(message)
         print(response.status_code, response.body, response.headers)
     except Exception as e:
