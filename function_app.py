@@ -32,7 +32,7 @@ def enviarMail(reservas,token):
                 Numero_de_huespeds=str(reserva["numberOfGuests"])
         ) + "<div style='page-break-after: always;'></div>"
     except Exception as e:
-        raise KeyError(f" fallo: {e}")
+        raise KeyError(f" fallo: {e} ----- {reservas} ---- {listingID}")
         
     full_html += "</body></html>"
     # Generar el PDF desde HTML y mantenerlo en memoria
