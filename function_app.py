@@ -48,11 +48,7 @@ def enviarMail():
     attachment.disposition = Disposition('attachment')
     message.attachment = attachment
 
-    message = Mail(
-    from_email='reservas@apartamentoscantabria.net',
-    to_emails='diegoechaure@gmail.com',
-    subject='Sending with Twilio SendGrid is Fun',
-    html_content='<strong>and easy to do anywhere, even with Python</strong>')
+    
     try:
         sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
         response = sg.send(message)
