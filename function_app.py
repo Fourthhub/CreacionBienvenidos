@@ -22,8 +22,8 @@ def enviarMail(reservas):
             Apartamento=reserva["listingName"],
             Nombre=reserva["guestName"],
             Total_estancia=str(reserva["totalPrice"]) + " " + reserva["currency"],
-            Pagado="",
-            restante="Ejemplo restante",
+            Pagado="no se",
+            restante=reservas["remainingBalance"],
             address="Ejemplo dirección",
             fechachekin=reserva["arrivalDate"],
             fechacheckout=reserva["departureDate"],
@@ -99,6 +99,6 @@ def reservasHoy(arrivalStartDate, arrivalEndDate,token):
 def crecionBienvenido(myTimer: func.TimerRequest) -> None:
     token = obtener_acceso_hostaway()
     hoy = datetime.now().strftime('%Y-%m-%d')
-    reservas= reservasHoy(hoy,hoy,URL_HOSTAWAY_TOKEN).json()
+    reservas= reservasHoy(hoy,hoy,URL_HOSTAWAY_TOKEN)
     enviarMail(reservas)
     logging.info('Python timer trigger function executed.')
