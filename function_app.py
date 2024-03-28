@@ -30,19 +30,18 @@ def generate_pdf(pdf_path):
     """
     HTML(string=html_content).write_pdf(pdf_path)
 
-def send_email_with_attachment(subject, body, attachment_path, receiver_email):
-    sender_email = os.getenv("SENDER_EMAIL")
-    password = os.getenv("EMAIL_PASSWORD")
-    smtp_server = "smtp.gmail.com"
+def send_email_with_attachment(attachment_path):
+    sender_email = os.getenv("d.echaure@apartamentoscantabria.net")
+    password = os.getenv("Jamonjamon1")
+    smtp_server = "smtp.office365.com"
     smtp_port = 587
 
     # Crear el mensaje
     message = MIMEMultipart()
     message["From"] = sender_email
-    message["To"] = receiver_email
+    message["To"] = "reservas@apartamentoscantabria.net"
     message["Subject"] = subject
-    message.attach(MIMEText(body, "plain"))
-
+    message.attach(MIMEText("Aqui estan los bienvenidos", "plain"))
     # Adjuntar el PDF
     with open(attachment_path, "rb") as attachment:
         part = MIMEApplication(attachment.read(), Name=os.path.basename(attachment_path))
@@ -58,7 +57,11 @@ def send_email_with_attachment(subject, body, attachment_path, receiver_email):
 @app.schedule(schedule="0 0 10 * * *", arg_name="myTimer", run_on_startup=True,
               use_monitor=False) 
 def crecionBienvenido(myTimer: func.TimerRequest) -> None:
-    if myTimer.past_due:
-        logging.info('The timer is past due!')
+
+    pdf_path = "/tmp/mydocument.pdf"
+    generate_pdf(pdf_path)
+    send_email_with_attachment(pdf_path)
+
+    
 
     logging.info('Python timer trigger function executed.')
