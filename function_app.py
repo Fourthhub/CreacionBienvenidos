@@ -33,7 +33,7 @@ def generate_pdf(pdf_path):
 def send_email_with_attachment(attachment_path):
     sender_email = "diegoechaure@hotmail.es"
     password = "942679432"
-    smtp_server = "smtp.office365.com"
+    smtp_server = "smtp.live.com"
     smtp_port = 587
 
     # Crear el mensaje
