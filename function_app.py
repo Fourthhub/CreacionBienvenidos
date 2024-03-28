@@ -31,8 +31,8 @@ def generate_pdf(pdf_path):
     HTML(string=html_content).write_pdf(pdf_path)
 
 def send_email_with_attachment(attachment_path):
-    sender_email = os.getenv("d.echaure@apartamentoscantabria.net")
-    password = os.getenv("Jamonjamon1")
+    sender_email = os.getenv("diegoechaure@hotmail.ces")
+    password = os.getenv("942679432")
     smtp_server = "smtp.office365.com"
     smtp_port = 587
 
