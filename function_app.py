@@ -12,8 +12,8 @@ app = func.FunctionApp()
 def enviarMail():
 
     message = Mail(
-        from_email='from_email@example.com',
-        to_emails='to@example.com',
+        from_email='reservas@apartamentoscantabria.net',
+        to_emails='reservas@apartamentoscantabria.net',
         subject='Sending with Twilio SendGrid is Fun',
         html_content='<strong>and easy to do anywhere, even with Python</strong>')
     try:
@@ -23,7 +23,7 @@ def enviarMail():
         print(response.body)
         print(response.headers)
     except Exception as e:
-        print(e.message)
+        print(str(e))
 
 @app.schedule(schedule="0 0 10 * * *", arg_name="myTimer", run_on_startup=True,
               use_monitor=False) 
