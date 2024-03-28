@@ -1,6 +1,7 @@
 
 import logging
 import os
+import base64
 from io import BytesIO
 from weasyprint import HTML
 from sendgrid import SendGridAPIClient
