@@ -49,10 +49,12 @@ def send_email_with_attachment(attachment_path):
     message.attach(part)
 
     # Enviar el correo
-    with smtplib.SMTP(smtp_server, smtp_port) as server:
-        server.starttls()
-        server.login(sender_email, password)
-        server.send_message(message)
+    s = smtplib.SMTP("smtp.live.com",587)
+    s.ehlo() # Hostname to send for this command defaults to the fully qualified domain name of the local host.
+    s.starttls() #Puts connection to SMTP server in TLS mode
+    s.ehlo()
+    s.login('diegoechaure@hotmail.com', '942679432')
+    s.sendmail("example1@hotmail.fr", "example2@hotmail.fr", message)
 
 @app.schedule(schedule="0 0 10 * * *", arg_name="myTimer", run_on_startup=True,
               use_monitor=False) 
