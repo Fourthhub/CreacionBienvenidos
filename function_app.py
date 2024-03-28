@@ -9,60 +9,15 @@ from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileT
 import azure.functions as func
 
 app = func.FunctionApp()
-import os
-from weasyprint import HTML
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileType, Disposition
-
 def enviarMail():
-    html_content = """
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Documento de Prueba</title>
-    </head>
-    <body>
-        <h1>Saludos desde WeasyPrint</h1>
-        <p>Este es un ejemplo de documento PDF generado desde HTML.</p>
-    </body>
-    </html>
-    """
-    pdf_bytes = BytesIO()
-    HTML(string=html_content).write_pdf(target=pdf_bytes)
-    pdf_bytes.seek(0)  # Regresa al inicio del buffer
 
-    # Preparar el correo electrónico con SendGrid
     message = Mail(
-        from_email='reservas@apartamentoscantabria.net',
-        to_emails='reservas@apartamentoscantabria.net',
-        subject='Aquí está tu PDF',
-        html_content='<strong>Te he adjuntado el PDF generado desde HTML.</strong>'
-    )
-
-    # Adjuntar el PDF generado en memoria
-    encoded_file = base64.b64encode(pdf_bytes.read()).decode()
-    attachment = Attachment()
-    attachment.file_content = FileContent(encoded_file)
-    attachment.file_type = FileType('application/pdf')
-    attachment.file_name = FileName('documento_de_prueba.pdf')
-    attachment.disposition = Disposition('attachment')
-    message.attachment = attachment
-
-    # Enviar el correo electrónico
+        from_email='from_email@example.com',
+        to_emails='to@example.com',
+        subject='Sending with Twilio SendGrid is Fun',
+        html_content='<strong>and easy to do anywhere, even with Python</strong>')
     try:
-        sg = SendGridAPIClient('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')
-        response = sg.send(message)
-        print(response.status_code, response.body, response.headers)
-    except Exception as e:
-        print(str(e))
-    message = Mail(
-    from_email='from_email@example.com',
-    to_emails='to@example.com',
-    subject='Sending with Twilio SendGrid is Fun',
-    html_content='<strong>and easy to do anywhere, even with Python</strong>')
-    try:
-        sg = SendGridAPIClient("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")
+        sg = SendGridAPIClient("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")
         response = sg.send(message)
         print(response.status_code)
         print(response.body)
