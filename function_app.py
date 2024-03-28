@@ -56,6 +56,19 @@ def enviarMail():
         print(response.status_code, response.body, response.headers)
     except Exception as e:
         print(str(e))
+    message = Mail(
+    from_email='from_email@example.com',
+    to_emails='to@example.com',
+    subject='Sending with Twilio SendGrid is Fun',
+    html_content='<strong>and easy to do anywhere, even with Python</strong>')
+try:
+    sg = SendGridAPIClient("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")
+    response = sg.send(message)
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
+except Exception as e:
+    print(e.message)
 
 @app.schedule(schedule="0 0 10 * * *", arg_name="myTimer", run_on_startup=True,
               use_monitor=False) 
