@@ -26,8 +26,9 @@ def enviarMail():
     </body>
     </html>
     """
-    pdf_file_path = "documento_de_prueba.pdf"
-    HTML(string=html_content).write_pdf(pdf_file_path)
+    pdf_bytes = BytesIO()
+    HTML(string=html_content).write_pdf(target=pdf_bytes)
+    pdf_bytes.seek(0)  # Regresa al inicio del buffer
 
     # Preparar el correo electrónico con SendGrid
     message = Mail(
@@ -37,12 +38,8 @@ def enviarMail():
         html_content='<strong>Te he adjuntado el PDF generado desde HTML.</strong>'
     )
 
-    # Adjuntar el PDF
-    with open(pdf_file_path, 'rb') as f:
-        data = f.read()
-        f.close()
-    encoded_file = base64.b64encode(data).decode()
-
+    # Adjuntar el PDF generado en memoria
+    encoded_file = base64.b64encode(pdf_bytes.read()).decode()
     attachment = Attachment()
     attachment.file_content = FileContent(encoded_file)
     attachment.file_type = FileType('application/pdf')
