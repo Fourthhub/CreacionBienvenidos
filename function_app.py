@@ -1,26 +1,24 @@
-import os
+
 import logging
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.application import MIMEApplication
-from email.mime.text import MIMEText
+import os
 from weasyprint import HTML
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileType, Disposition
 import azure.functions as func
 
 app = func.FunctionApp()
+import os
+from weasyprint import HTML
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileType, Disposition
 
-def generate_pdf(pdf_path):
+def enviarMail():
     html_content = """
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Documento de Prueba</title>
-        <style>
-            body { font-family: "Arial"; }
-            h1 { color: #333366; }
-            p { color: #666; font-size: 16px; }
-        </style>
     </head>
     <body>
         <h1>Saludos desde WeasyPrint</h1>
@@ -28,38 +26,45 @@ def generate_pdf(pdf_path):
     </body>
     </html>
     """
-    HTML(string=html_content).write_pdf(pdf_path)
+    pdf_file_path = "documento_de_prueba.pdf"
+    HTML(string=html_content).write_pdf(pdf_file_path)
 
-def send_email_with_attachment(attachment_path):
-    sender_email = "diegoechaure@hotmail.es"
-    password = "942679432"
-    smtp_server = "smtp-mail.outlook.com"
-    smtp_port = 587
+    # Preparar el correo electrónico con SendGrid
+    message = Mail(
+        from_email='reservas@apartamentoscantabria.net',
+        to_emails='reservas@apartamentoscantabria.net',
+        subject='Aquí está tu PDF',
+        html_content='<strong>Te he adjuntado el PDF generado desde HTML.</strong>'
+    )
 
-    # Crear el mensaje
-    message = MIMEMultipart()
-    message["From"] = sender_email
-    message["To"] = "reservas@apartamentoscantabria.net"
-    message["Subject"] = "Hellooo"
-    message.attach(MIMEText("Aqui estan los bienvenidos", "plain"))
     # Adjuntar el PDF
-    with open(attachment_path, "rb") as attachment:
-        part = MIMEApplication(attachment.read(), Name=os.path.basename(attachment_path))
-    part['Content-Disposition'] = f'attachment; filename="{os.path.basename(attachment_path)}"'
-    message.attach(part)
-    
-    smtp = smtplib.SMTP("smtp-mail.outlook.com", port=587)
-    smtp.starttls()
-    smtp.login("diegoechaure@hotmail.es", "942679432")
-    smtp.sendmail("diegoechaure@hotmail.es", "reservas@apartamentoscantabria.net", "FE·ferwfewfewewfwe")
-    smtp.quit()
+    with open(pdf_file_path, 'rb') as f:
+        data = f.read()
+        f.close()
+    encoded_file = base64.b64encode(data).decode()
+
+    attachment = Attachment()
+    attachment.file_content = FileContent(encoded_file)
+    attachment.file_type = FileType('application/pdf')
+    attachment.file_name = FileName('documento_de_prueba.pdf')
+    attachment.disposition = Disposition('attachment')
+    message.attachment = attachment
+
+    # Enviar el correo electrónico
+    try:
+        sg = SendGridAPIClient('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')
+        response = sg.send(message)
+        print(response.status_code, response.body, response.headers)
+    except Exception as e:
+        print(str(e))
+
 @app.schedule(schedule="0 0 10 * * *", arg_name="myTimer", run_on_startup=True,
               use_monitor=False) 
 def crecionBienvenido(myTimer: func.TimerRequest) -> None:
 
-    pdf_path = "/tmp/mydocument.pdf"
-    generate_pdf(pdf_path)
-    send_email_with_attachment(pdf_path)
+ 
+    enviarMail()
+    
 
     
 
