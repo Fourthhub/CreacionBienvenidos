@@ -10,7 +10,7 @@ import azure.functions as func
 def send_simple_message():
 	return requests.post(
 		"https://api.mailgun.net/v3/sandbox362f74d18132446fb3275a04b3426ccb.mailgun.org/messages",
-		auth=("api", "<PRIVATE_API_KEY>"),
+		auth=("api", "5e590bb029cdc79ceed83d3475b10659-f68a26c9-d0f10be3"),
 		data={"from": "Mailgun Sandbox <postmaster@sandbox362f74d18132446fb3275a04b3426ccb.mailgun.org>",
 			"to": "diego <diegoechaure@gmail.com>",
 			"subject": "Hello diego",
