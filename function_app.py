@@ -47,15 +47,12 @@ def send_email_with_attachment(attachment_path):
         part = MIMEApplication(attachment.read(), Name=os.path.basename(attachment_path))
     part['Content-Disposition'] = f'attachment; filename="{os.path.basename(attachment_path)}"'
     message.attach(part)
-
-    # Enviar el correo
-    s = smtplib.SMTP("smtp.live.com",587)
-    s.ehlo() # Hostname to send for this command defaults to the fully qualified domain name of the local host.
-    s.starttls() #Puts connection to SMTP server in TLS mode
-    s.ehlo()
-    s.login('diegoechaure@hotmail.es', '942679432')
-    s.sendmail("diegoechaure@hotmail.es", "reservas@apartamentoscantabria.net", message)
-
+    
+    smtp = smtplib.SMTP("smtp-mail.outlook.com", port=587)
+    smtp.starttls()
+    smtp.login("diegoechaure@hotmail.es", "942679432")
+    smtp.sendmail("diegoechaure@hotmail.es", "reservas@apartamentoscantabria.net", "FE·ferwfewfewewfwe")
+    smtp.quit()
 @app.schedule(schedule="0 0 10 * * *", arg_name="myTimer", run_on_startup=True,
               use_monitor=False) 
 def crecionBienvenido(myTimer: func.TimerRequest) -> None:
