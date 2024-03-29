@@ -26,6 +26,7 @@ def enviarMail(reservas,token):
         address,serieFact = direccionListing(token, listingID)  # Obtener la dirección una sola vez por reserva
         pagado= remainingBalance(token,reserva["id"])
         total= reserva["totalPrice"]
+        remin= round(total - pagado, 2)
         # Ejecutar dos veces por cada reserva
         for _ in range(2):
             full_html += base_html.format(
@@ -33,7 +34,7 @@ def enviarMail(reservas,token):
                 Nombre=reserva["guestName"],
                 Total_estancia=str(total) + " " + reserva["currency"],
                 Pagado=str(pagado)+ " " + reserva["currency"],  # Asegúrate de definir cómo obtener este valor
-                restante=str(round(total - pagado, 2)) + " " + reserva["currency"]
+                restante=str(remin) + " " + reserva["currency"]
                 address=address,  # Usar la dirección obtenida previamente
                 fechachekin=reserva["arrivalDate"],
                 fechacheckout=reserva["departureDate"],
