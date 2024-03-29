@@ -118,9 +118,9 @@ def direccionListing(token,listingId):
     response = requests.get(url, headers=headers)
     data = response.json()
     serie="A"
-    for field in data["customFieldValues"]:
+    for field in data['result']["customFieldValues"]:
         if field["customFieldid"]==57829:
-            seire=field["value"]
+            serie=field["value"]
     
 
     return data['result']["address"],serie
