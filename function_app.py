@@ -110,7 +110,7 @@ def direccionListing(token,listingId):
 
     response = requests.get(url, headers=headers)
     data = response.json()
-    return data["address"]
+    return data['result']["address"]
 
 
 @app.schedule(schedule="0 0 10 * * *", arg_name="myTimer", run_on_startup=True,
