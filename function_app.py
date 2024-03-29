@@ -38,7 +38,7 @@ def enviarMail(reservas,token):
                 fechachekin=reserva["arrivalDate"],
                 fechacheckout=reserva["departureDate"],
                 Numero_de_huespeds=str(reserva["numberOfGuests"]),
-                serie=serieFact
+                facturacion=serieFact
             ) + "<div style='page-break-after: always;'></div>"
         full_html += "</body></html>"
     # Generar el PDF desde HTML y mantenerlo en memoria
