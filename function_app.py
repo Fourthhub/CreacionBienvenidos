@@ -19,6 +19,8 @@ def enviarMail(reservas,token):
     full_html = "<html><head><title>Documento Multi-página</title></head><body>"
     
     for reserva in reservas["result"]:
+        if reservas["status"]=="inquiry":
+            continue
         listingID=reserva["listingMapId"]
         full_html += base_html.format(
             Apartamento=reserva["listingName"],
