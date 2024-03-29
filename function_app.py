@@ -23,7 +23,7 @@ def enviarMail(reservas,token):
             continue
 
         listingID = reserva["listingMapId"]
-        address = direccionListing(token, listingID)  # Obtener la dirección una sola vez por reserva
+        address,serieFact = direccionListing(token, listingID)  # Obtener la dirección una sola vez por reserva
         pagado= remainingBalance(token,reserva["id"])
         total= reserva["totalPrice"]
         # Ejecutar dos veces por cada reserva
@@ -37,7 +37,8 @@ def enviarMail(reservas,token):
                 address=address,  # Usar la dirección obtenida previamente
                 fechachekin=reserva["arrivalDate"],
                 fechacheckout=reserva["departureDate"],
-                Numero_de_huespeds=str(reserva["numberOfGuests"])
+                Numero_de_huespeds=str(reserva["numberOfGuests"]),
+                serie=serieFact
             ) + "<div style='page-break-after: always;'></div>"
         full_html += "</body></html>"
     # Generar el PDF desde HTML y mantenerlo en memoria
