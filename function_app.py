@@ -24,7 +24,7 @@ def enviarMail(reservas,token):
 
         listingID = reserva["listingMapId"]
         address = direccionListing(token, listingID)  # Obtener la dirección una sola vez por reserva
-        remaining= remainingBalance(token,reserva["id"])
+        pagado= remainingBalance(token,reserva["id"])
         total= reserva["totalPrice"]
         # Ejecutar dos veces por cada reserva
         for _ in range(2):
@@ -32,8 +32,8 @@ def enviarMail(reservas,token):
                 Apartamento=reserva["listingName"],
                 Nombre=reserva["guestName"],
                 Total_estancia=str(total) + " " + reserva["currency"],
-                Pagado=str(total-remaining)+ " " + reserva["currency"],  # Asegúrate de definir cómo obtener este valor
-                restante=str(remaining)+ " " + reserva["currency"],
+                Pagado=str(pagado)+ " " + reserva["currency"],  # Asegúrate de definir cómo obtener este valor
+                restante=str(total-pagado)+ " " + reserva["currency"],
                 address=address,  # Usar la dirección obtenida previamente
                 fechachekin=reserva["arrivalDate"],
                 fechacheckout=reserva["departureDate"],
@@ -128,11 +128,11 @@ def remainingBalance(token,idReserva):
     }
     response = requests.get(url, headers=headers)
     data = response.json()['result']
-    remainingBalance=0
+    pagado=0
     for charge in data:
         if charge['status']=="paid":
-            remainingBalance+=charge['amount']
-    return remainingBalance
+            pagado+=charge['amount']
+    return pagado
 
 @app.schedule(schedule="0 0 10 * * *", arg_name="myTimer", run_on_startup=True,
               use_monitor=False) 
