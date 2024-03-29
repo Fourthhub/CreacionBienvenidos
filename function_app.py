@@ -17,23 +17,21 @@ def enviarMail(reservas,token):
 
     # Generar el HTML completo con 3 páginas
     full_html = "<html><head><title>Documento Multi-página</title></head><body>"
-    try:
-        for reserva in reservas["result"]:
-            listingID=reserva["listingMapId"]
-            full_html += base_html.format(
-                Apartamento=reserva["listingName"],
-                Nombre=reserva["guestName"],
-                Total_estancia=str(reserva["totalPrice"]) + " " + reserva["currency"],
-                Pagado="no se",
-                restante=reservas["remainingBalance"],
-                address="no se",
-                fechachekin=reserva["arrivalDate"],
-                fechacheckout=reserva["departureDate"],
-                Numero_de_huespeds=str(reserva["numberOfGuests"])
-        ) + "<div style='page-break-after: always;'></div>"
-    except Exception as e:
-        raise KeyError(f" fallo: {e} ----- {reservas} ----")
-        
+    
+    for reserva in reservas["result"]:
+        listingID=reserva["listingMapId"]
+        full_html += base_html.format(
+            Apartamento=reserva["listingName"],
+            Nombre=reserva["guestName"],
+            Total_estancia=str(reserva["totalPrice"]) + " " + reserva["currency"],
+            Pagado="no se",
+            restante=reservas["remainingBalance"],
+            address="no se",
+            fechachekin=reserva["arrivalDate"],
+            fechacheckout=reserva["departureDate"],
+            Numero_de_huespeds=str(reserva["numberOfGuests"])
+    ) + "<div style='page-break-after: always;'></div>"
+    
     full_html += "</body></html>"
     # Generar el PDF desde HTML y mantenerlo en memoria
     pdf_bytes_io = BytesIO()
