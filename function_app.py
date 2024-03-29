@@ -123,7 +123,7 @@ def direccionListing(token,listingId):
     data = response.json()
     serie="A"
     for field in data['result']["customFieldValues"]:
-        if field["customFieldid"]==57829:
+        if field["customFieldId"]==57829:
             serie=field["value"]
     
 
