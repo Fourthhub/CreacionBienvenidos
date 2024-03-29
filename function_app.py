@@ -34,12 +34,9 @@ def enviarMail(reservas,token):
     
     full_html += "</body></html>"
     # Generar el PDF desde HTML y mantenerlo en memoria
-    pdf_bytes_io = BytesIO()
-    HTML(string=full_html).write_pdf(target=pdf_bytes_io)
-    pdf_bytes_io.seek(0)  # Regresar al inicio del stream
-
-    # Codificar el PDF en memoria a base64
-    encoded_pdf = base64.b64encode(pdf_bytes_io.getvalue()).decode()
+    
+    encoded_file = base64.b64encode(full_html.encode()).decode()
+    
 
     # Crear el mensaje de correo con SendGrid
     message = Mail(
@@ -51,9 +48,9 @@ def enviarMail(reservas,token):
 
     # Adjuntar el PDF codificado
     attachment = Attachment()
-    attachment.file_content = FileContent(encoded_pdf)
-    attachment.file_type = FileType('application/pdf')
-    attachment.file_name = FileName('documento_generado.pdf')
+    attachment.file_content = FileContent(encoded_file)
+    attachment.file_type = FileType('text/html')
+    attachment.file_name = FileName('bienvenidos.html')
     attachment.disposition = Disposition('attachment')
     message.attachment = attachment
 
