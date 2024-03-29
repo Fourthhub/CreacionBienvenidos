@@ -19,22 +19,26 @@ def enviarMail(reservas,token):
     full_html = "<html><head><title>Documento Multi-página</title></head><body>"
     
     for reserva in reservas["result"]:
-        if reservas["status"]=="inquiry":
+        if reserva["status"] == "inquiry":
             continue
-        listingID=reserva["listingMapId"]
-        full_html += base_html.format(
-            Apartamento=reserva["listingName"],
-            Nombre=reserva["guestName"],
-            Total_estancia=str(reserva["totalPrice"]) + " " + reserva["currency"],
-            Pagado="no se",
-            restante=reserva["remainingBalance"],
-            address=direccionListing(token,listingID),
-            fechachekin=reserva["arrivalDate"],
-            fechacheckout=reserva["departureDate"],
-            Numero_de_huespeds=str(reserva["numberOfGuests"])
-    ) + "<div style='page-break-after: always;'></div>"
-    
-    full_html += "</body></html>"
+
+        listingID = reserva["listingMapId"]
+        address = direccionListing(token, listingID)  # Obtener la dirección una sola vez por reserva
+
+        # Ejecutar dos veces por cada reserva
+        for _ in range(2):
+            full_html += base_html.format(
+                Apartamento=reserva["listingName"],
+                Nombre=reserva["guestName"],
+                Total_estancia=str(reserva["totalPrice"]) + " " + reserva["currency"],
+                Pagado="no se",  # Asegúrate de definir cómo obtener este valor
+                restante=reserva["remainingBalance"],
+                address=address,  # Usar la dirección obtenida previamente
+                fechachekin=reserva["arrivalDate"],
+                fechacheckout=reserva["departureDate"],
+                Numero_de_huespeds=str(reserva["numberOfGuests"])
+            ) + "<div style='page-break-after: always;'></div>"
+        full_html += "</body></html>"
     # Generar el PDF desde HTML y mantenerlo en memoria
     
     encoded_file = base64.b64encode(full_html.encode()).decode()
