@@ -32,8 +32,8 @@ def enviarMail(reservas,token):
                 Apartamento=reserva["listingName"],
                 Nombre=reserva["guestName"],
                 Total_estancia=str(total) + " " + reserva["currency"],
-                Pagado=total-remaining,  # Asegúrate de definir cómo obtener este valor
-                restante=remaining,
+                Pagado=str(total-remaining)+ " " + reserva["currency"],  # Asegúrate de definir cómo obtener este valor
+                restante=str(remaining)+ " " + reserva["currency"],
                 address=address,  # Usar la dirección obtenida previamente
                 fechachekin=reserva["arrivalDate"],
                 fechacheckout=reserva["departureDate"],
