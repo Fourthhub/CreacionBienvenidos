@@ -130,7 +130,7 @@ def remainingBalance(token,idReserva):
     data = response.json()['result']
     remainingBalance=0
     for charge in data:
-        if charge['status']=="Paid":
+        if charge['status']=="paid":
             remainingBalance+=charge['amount']
     return remainingBalance
 
