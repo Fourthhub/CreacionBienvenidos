@@ -24,15 +24,16 @@ def enviarMail(reservas,token):
 
         listingID = reserva["listingMapId"]
         address = direccionListing(token, listingID)  # Obtener la dirección una sola vez por reserva
-
+        remaining= remainingBalance(token,reserva["id"])
+        total= reserva["totalPrice"]
         # Ejecutar dos veces por cada reserva
         for _ in range(2):
             full_html += base_html.format(
                 Apartamento=reserva["listingName"],
                 Nombre=reserva["guestName"],
-                Total_estancia=str(reserva["totalPrice"]) + " " + reserva["currency"],
-                Pagado="no se",  # Asegúrate de definir cómo obtener este valor
-                restante=reserva["remainingBalance"],
+                Total_estancia=str(total) + " " + reserva["currency"],
+                Pagado=total-remaining  # Asegúrate de definir cómo obtener este valor
+                restante=remaining
                 address=address,  # Usar la dirección obtenida previamente
                 fechachekin=reserva["arrivalDate"],
                 fechacheckout=reserva["departureDate"],
@@ -118,6 +119,20 @@ def direccionListing(token,listingId):
     data = response.json()
     return data['result']["address"]
 
+def remainingBalance(token,idReserva):
+    url= f"https://api.hostaway.com/v1/guestPayments/charges?reservationId={idReserva}"
+    headers = {
+        'Authorization': f"Bearer {token}",
+        'Content-type': "application/json",
+        'Cache-control': "no-cache",
+    }
+    response = requests.get(url, headers=headers)
+    data = response.json()['result']
+    remainingBalance=0
+    for charge in data:
+        if charge['status']=="Paid":
+            remainingBalance+=charge['amount']
+    return remainingBalance
 
 @app.schedule(schedule="0 0 10 * * *", arg_name="myTimer", run_on_startup=True,
               use_monitor=False) 
