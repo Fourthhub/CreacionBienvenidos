@@ -7,7 +7,7 @@ import requests
 from datetime import datetime
 from weasyprint import HTML
 from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileType, Disposition
+from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileType, Disposition,To
 import azure.functions as func
 
 URL_HOSTAWAY_TOKEN = "https://api.hostaway.com/v1/accessTokens"
@@ -43,9 +43,12 @@ def enviarMail(reservas,token):
     # Crear el mensaje de correo con SendGrid
     message = Mail(
         from_email='reservas@apartamentoscantabria.net',
-        to_emails='diegoechaure@gmail.com',
-        subject='PDF generado desde HTML',
-        html_content='<strong>Adjunto encontrarás el PDF generado......</strong>'
+        to_emails=[
+        To('diegoechaure@gmail.com'),
+        To('reservas@apartamentoscantabria.net'),
+    ],
+        subject='Chekins de hoy',
+        html_content='<strong>Los bienvenidos de hoy en isla</strong>'
     )
 
     # Adjuntar el PDF codificado
