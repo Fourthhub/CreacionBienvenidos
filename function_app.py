@@ -115,7 +115,7 @@ def reservasHoy(arrivalStartDate, arrivalEndDate,token):
     return data
 
 def direccionListing(token,listingId):
-    url = f"https://api.hostaway.com/v1/listings/{listingId}includeResources=1" 
+    url = f"https://api.hostaway.com/v1/listings/{listingId}?includeResources=1" 
 
     headers = {
         'Authorization': f"Bearer {token}",
