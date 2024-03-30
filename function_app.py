@@ -11,6 +11,10 @@ from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileT
 import azure.functions as func
 
 URL_HOSTAWAY_TOKEN = "https://api.hostaway.com/v1/accessTokens"
+value_mapping = {
+    "Rocio": "R",
+    "Alojamientos": "A"
+}
 app = func.FunctionApp()
 def enviarMail(reservas,token):
     base_html = """<!DOCTYPE html><html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en" style="box-sizing:border-box"><head style="box-sizing:border-box"><title style="box-sizing:border-box"></title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" style="box-sizing:border-box"><meta name="viewport" content="width=device-width,initial-scale=1" style="box-sizing:border-box"><!--[if mso]><xml><o:officedocumentsettings><o:pixelsperinch>96</o:pixelsperinch><o:allowpng></o:officedocumentsettings></xml><![endif]--><!--[if !mso]>
@@ -124,8 +128,8 @@ def direccionListing(token,listingId):
     serie="A"
     for field in data['result']["customFieldValues"]:
         if field["customFieldId"]==57829:
-            serie=field["value"]
-    
+            mapped_value = value_mapping.get(field["value"], "A")  # Default a "A" si el valor no se encuentra en el mapeo
+            serie = mapped_value
 
     return data['result']["address"],serie
 
