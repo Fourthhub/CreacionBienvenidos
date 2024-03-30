@@ -115,7 +115,7 @@ def reservasHoy(arrivalStartDate, arrivalEndDate,token):
     return data
 
 def direccionListing(token,listingId):
-    url = f"https://api.hostaway.com/v1/listings/{listingId}" 
+    url = f"https://api.hostaway.com/v1/listings/{listingId}includeResources=1" 
 
     headers = {
         'Authorization': f"Bearer {token}",
@@ -134,7 +134,7 @@ def direccionListing(token,listingId):
     return data['result']["address"],serie
 
 def remainingBalance(token,idReserva):
-    url= f"https://api.hostaway.com/v1/guestPayments/charges?reservationId={idReserva}?includeResources=1"
+    url= f"https://api.hostaway.com/v1/guestPayments/charges?reservationId={idReserva}"
     headers = {
         'Authorization': f"Bearer {token}",
         'Content-type': "application/json",
