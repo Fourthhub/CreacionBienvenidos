@@ -130,7 +130,7 @@ def direccionListing(token,listingId):
     return data['result']["address"],serie
 
 def remainingBalance(token,idReserva):
-    url= f"https://api.hostaway.com/v1/guestPayments/charges?reservationId={idReserva}"
+    url= f"https://api.hostaway.com/v1/guestPayments/charges?reservationId={idReserva}?includeResources=1"
     headers = {
         'Authorization': f"Bearer {token}",
         'Content-type': "application/json",
