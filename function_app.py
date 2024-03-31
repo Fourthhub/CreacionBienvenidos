@@ -148,8 +148,7 @@ def remainingBalance(token,idReserva):
             pagado+=charge['amount']
     return pagado
 
-@app.schedule(schedule="0 0 9 * * *", arg_name="myTimer",
-              use_monitor=False) 
+@app.schedule(schedule="0 0 9 * * *", arg_name="myTimer") 
 def crecionBienvenido(myTimer: func.TimerRequest) -> None:
     token = obtener_acceso_hostaway()
     hoy = datetime.now().strftime('%Y-%m-%d')
