@@ -469,6 +469,450 @@ def enviarMail(reservas,token):
     </body>
 
     </html>"""
+
+    english_html="""<!DOCTYPE html>
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="es-ES" style="box-sizing: border-box;">
+
+<head style="box-sizing: border-box;">
+	<title style="box-sizing: border-box;"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" style="box-sizing: border-box;">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" style="box-sizing: border-box;"><!--[if mso]><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch><o:AllowPNG/></o:OfficeDocumentSettings></xml><![endif]--><!--[if !mso]><!-->
+	<!--<![endif]-->
+	
+</head>
+
+<body style="background-color: #ffffff;margin: 0;padding: 0;-webkit-text-size-adjust: none;text-size-adjust: none;box-sizing: border-box;">
+	<table class="nl-container" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;background-color: #ffffff;box-sizing: border-box;">
+		<tbody style="box-sizing: border-box;">
+			<tr style="box-sizing: border-box;">
+				<td style="box-sizing: border-box;">
+					<table class="row row-1" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+						<tbody style="box-sizing: border-box;">
+							<tr style="box-sizing: border-box;">
+								<td style="box-sizing: border-box;">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-radius: 10px;color: #000000;width: 750px;margin: 0 auto;box-sizing: border-box;" width="750">
+										<tbody style="box-sizing: border-box;">
+											<tr style="box-sizing: border-box;">
+												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;padding-bottom: 10px;padding-left: 20px;padding-right: 20px;padding-top: 10px;vertical-align: top;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
+													<table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-bottom: 10px;padding-left: 15px;padding-right: 15px;width: 100%;box-sizing: border-box;">
+																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
+																	<div style="max-width: 213px;box-sizing: border-box;"><img src="https://d487b3526b.imgdist.com/public/users/Integrators/BeeProAgency/1147963_1133632/Logo%20AC%202024%281%29.svg" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="213" height="auto"></div>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-bottom: 5px;padding-left: 15px;padding-right: 15px;padding-top: 5px;text-align: center;width: 100%;box-sizing: border-box;">
+																<h1 style="margin: 0;color: #393939;direction: ltr;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size: 32px;font-weight: 700;letter-spacing: -1px;line-height: 120%;text-align: center;margin-top: 0;margin-bottom: 0;mso-line-height-alt: 38.4px;box-sizing: border-box;"><span class="tinyMce-placeholder" style="box-sizing: border-box;">{Apartamento}<br style="box-sizing: border-box;"></span></h1>
+															</td>
+														</tr>
+													</table>
+													<table class="divider_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-left: 10px;padding-right: 10px;box-sizing: border-box;">
+																<div class="alignment" align="center" style="box-sizing: border-box;">
+																	<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="65%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+																		<tr style="box-sizing: border-box;">
+																			<td class="divider_inner" style="font-size: 1px;line-height: 1px;border-top: 2px solid #3d3d3d;box-sizing: border-box;"><span style="box-sizing: border-box;">&#8202;</span></td>
+																		</tr>
+																	</table>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<table class="heading_block block-4" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="box-sizing: border-box;">
+																<h3 style="margin: 0;color: #3e3e3e;direction: ltr;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size: 22px;font-weight: 400;letter-spacing: normal;line-height: 120%;text-align: center;margin-top: 0;margin-bottom: 0;mso-line-height-alt: 26.4px;box-sizing: border-box;"><span class="tinyMce-placeholder" style="box-sizing: border-box;">{Nombre}</span></h3>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="row row-2" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+						<tbody style="box-sizing: border-box;">
+							<tr style="box-sizing: border-box;">
+								<td style="box-sizing: border-box;">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;background-color: #d4d4d4;border-bottom: 17px solid transparent;border-left: 17px solid transparent;border-radius: 30px;border-right: 17px solid transparent;border-top: 17px solid transparent;color: #000000;width: 750px;margin: 0 auto;box-sizing: border-box;" width="750">
+										<tbody style="box-sizing: border-box;">
+											<tr style="box-sizing: border-box;">
+												<td class="column column-1" width="25%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;vertical-align: top;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
+													<table class="text_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-bottom: 10px;padding-left: 50px;padding-right: 10px;padding-top: 10px;box-sizing: border-box;">
+																<div style="font-family: sans-serif;box-sizing: border-box;">
+																	<div class style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #000000;line-height: 1.2;box-sizing: border-box;">
+																		<p style="margin: 0;font-size: 12px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;"><u style="box-sizing: border-box;"><span style="font-size: 16px;box-sizing: border-box;"><strong style="box-sizing: border-box;">PAYMENTS</strong></span></u></p>
+																	</div>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<table class="text_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-bottom: 10px;padding-left: 50px;padding-right: 10px;padding-top: 10px;box-sizing: border-box;">
+																<div style="font-family: sans-serif;box-sizing: border-box;">
+																	<div class style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #000000;line-height: 1.2;box-sizing: border-box;">
+																		<p style="margin: 0;font-size: 12px;text-align: left;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;"><span style="font-size: 16px;box-sizing: border-box;">Total Stay:</span></p>
+																	</div>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<table class="text_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-bottom: 10px;padding-left: 50px;padding-right: 10px;padding-top: 10px;box-sizing: border-box;">
+																<div style="font-family: sans-serif;box-sizing: border-box;">
+																	<div class style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #000000;line-height: 1.2;box-sizing: border-box;">
+																		<p style="margin: 0;font-size: 12px;text-align: left;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;"><span style="font-size: 14px;box-sizing: border-box;">Paid</span></p>
+																	</div>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<table class="text_block block-4" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-bottom: 10px;padding-left: 50px;padding-right: 10px;padding-top: 10px;box-sizing: border-box;">
+																<div style="font-family: 'Trebuchet MS', Tahoma, sans-serif;box-sizing: border-box;">
+																	<div class style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #080808;line-height: 1.2;box-sizing: border-box;">
+																		<p style="margin: 0;font-size: 12px;text-align: left;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;"><span style="font-size: 14px;box-sizing: border-box;">Due Today:</span></p>
+																	</div>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td class="column column-2" width="25%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;padding-bottom: 5px;padding-top: 5px;vertical-align: top;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
+													<table class="text_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-bottom: 10px;padding-left: 20px;padding-right: 10px;padding-top: 10px;box-sizing: border-box;">
+																<div style="font-family: sans-serif;box-sizing: border-box;">
+																	<div class style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #555555;line-height: 1.2;box-sizing: border-box;">
+																		<p style="margin: 0;font-size: 12px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;"><span style="font-size: 16px;box-sizing: border-box;">&nbsp;</span></p>
+																	</div>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<table class="text_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-bottom: 10px;padding-left: 10px;padding-right: 20px;padding-top: 10px;box-sizing: border-box;">
+																<div style="font-family: sans-serif;box-sizing: border-box;">
+																	<div class style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #000000;line-height: 1.2;box-sizing: border-box;">
+																		<p style="margin: 0;font-size: 12px;text-align: right;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;"><span style="font-size: 14px;box-sizing: border-box;">{Total_estancia}</span></p>
+																	</div>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<table class="text_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-bottom: 10px;padding-left: 10px;padding-right: 20px;padding-top: 10px;box-sizing: border-box;">
+																<div style="font-family: sans-serif;box-sizing: border-box;">
+																	<div class style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #000000;line-height: 1.2;box-sizing: border-box;">
+																		<p style="margin: 0;font-size: 12px;text-align: right;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;"><span style="font-size: 14px;box-sizing: border-box;">{Pagado}</span></p>
+																	</div>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<table class="text_block block-4" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-bottom: 10px;padding-left: 10px;padding-right: 20px;padding-top: 10px;box-sizing: border-box;">
+																<div style="font-family: sans-serif;box-sizing: border-box;">
+																	<div class style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #000000;line-height: 1.2;box-sizing: border-box;">
+																		<p style="margin: 0;font-size: 12px;text-align: right;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;"><span style="font-size: 14px;box-sizing: border-box;">{restante}</span></p>
+																	</div>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td class="column column-3" width="50%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;padding-bottom: 5px;padding-top: 5px;vertical-align: top;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
+													<table class="text_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-bottom: 10px;padding-left: 40px;padding-right: 10px;padding-top: 10px;box-sizing: border-box;">
+																<div style="font-family: sans-serif;box-sizing: border-box;">
+																	<div class style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #000000;line-height: 1.2;box-sizing: border-box;">
+																		<p style="margin: 0;font-size: 12px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;"><span style="font-size: 16px;box-sizing: border-box;"><u style="box-sizing: border-box;"><strong style="box-sizing: border-box;">DETAILS</strong></u></span></p>
+																	</div>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<table class="text_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-bottom: 10px;padding-left: 40px;padding-right: 10px;padding-top: 10px;box-sizing: border-box;">
+																<div style="font-family: sans-serif;box-sizing: border-box;">
+																	<div class style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #000000;line-height: 1.2;box-sizing: border-box;">
+																		<p style="margin: 0;font-size: 12px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">📍 {address}</p>
+																	</div>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<table class="text_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-bottom: 10px;padding-left: 40px;padding-right: 10px;padding-top: 10px;box-sizing: border-box;">
+																<div style="font-family: sans-serif;box-sizing: border-box;">
+																	<div class style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #000000;line-height: 1.2;box-sizing: border-box;">
+																		<p style="margin: 0;font-size: 12px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">📆 &nbsp;From {fechachekin} to {fechacheckout}</p>
+																	</div>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<table class="text_block block-4" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-bottom: 10px;padding-left: 40px;padding-right: 10px;padding-top: 10px;box-sizing: border-box;">
+																<div style="font-family: sans-serif;box-sizing: border-box;">
+																	<div class style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #000000;line-height: 1.2;box-sizing: border-box;">
+																		<p style="margin: 0;font-size: 12px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">👤 &nbsp;{numero_de_huespeds}</p>
+																	</div>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="row row-3" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+						<tbody style="box-sizing: border-box;">
+							<tr style="box-sizing: border-box;">
+								<td style="box-sizing: border-box;">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #000000;width: 750px;margin: 0 auto;box-sizing: border-box;" width="750">
+										<tbody style="box-sizing: border-box;">
+											<tr style="box-sizing: border-box;">
+												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;padding-top: 5px;vertical-align: top;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
+													<table class="paragraph_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="box-sizing: border-box;">
+																<div style="color: #101112;direction: ltr;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size: 9px;font-weight: 400;letter-spacing: 0px;line-height: 120%;text-align: center;mso-line-height-alt: 10.799999999999999px;box-sizing: border-box;">
+																	<p style="margin: 0;box-sizing: border-box;line-height: inherit;"><em style="box-sizing: border-box;">----<strong style="box-sizing: border-box;">{facturacio}</strong>----</em></p>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="row row-4" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+						<tbody style="box-sizing: border-box;">
+							<tr style="box-sizing: border-box;">
+								<td style="box-sizing: border-box;">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;background-color: #ffffff;color: #000000;border-radius: 2px;width: 750px;margin: 0 auto;box-sizing: border-box;" width="750">
+										<tbody style="box-sizing: border-box;">
+											<tr style="box-sizing: border-box;">
+												<td class="column column-1" width="25%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;padding-bottom: 20px;padding-left: 20px;padding-right: 10px;padding-top: 20px;vertical-align: middle;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
+													<table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="width: 100%;padding-right: 0px;padding-left: 0px;box-sizing: border-box;">
+																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
+																	<div style="max-width: 70.875px;box-sizing: border-box;"><img src="https://d487b3526b.imgdist.com/pub/bfra/tk3qo566/9rf/x64/d4m/verificado.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="70.875" alt="Headset Icon" title="Headset Icon" height="auto"></div>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td class="column column-2" width="75%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;padding-bottom: 20px;padding-left: 10px;padding-right: 20px;padding-top: 20px;vertical-align: middle;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
+													<table class="paragraph_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-right: 10px;box-sizing: border-box;">
+																<div style="color: #3d3d3d;direction: ltr;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 400;letter-spacing: 0px;line-height: 120%;text-align: left;mso-line-height-alt: 16.8px;box-sizing: border-box;">
+																	<p style="margin: 0;box-sizing: border-box;line-height: inherit;">Upon completing the check-in, a bank hold of €150 will be made as a guarantee for possible damage to the dwelling, loss of keys, delay in departure, or final cleaning. This hold will be released after the accommodation is reviewed following check-out.</p>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="row row-5" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+						<tbody style="box-sizing: border-box;">
+							<tr style="box-sizing: border-box;">
+								<td style="box-sizing: border-box;">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-radius: 0;color: #000000;width: 750px;margin: 0 auto;box-sizing: border-box;" width="750">
+										<tbody style="box-sizing: border-box;">
+											<tr style="box-sizing: border-box;">
+												<td class="column column-1" width="25%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;padding-bottom: 10px;padding-left: 20px;padding-right: 10px;padding-top: 10px;vertical-align: middle;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
+													<table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="width: 100%;padding-right: 0px;padding-left: 0px;box-sizing: border-box;">
+																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
+																	<div style="max-width: 78.75px;box-sizing: border-box;"><img src="https://d487b3526b.imgdist.com/pub/bfra/tk3qo566/l0w/k40/183/ruido.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="78.75" alt="Paper Sheet With a Chart Icon" title="Paper Sheet With a Chart Icon" height="auto"></div>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td class="column column-2" width="75%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;padding-bottom: 20px;padding-left: 10px;padding-right: 20px;padding-top: 20px;vertical-align: middle;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
+													<table class="paragraph_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="box-sizing: border-box;">
+																<div style="color: #3d3d3d;direction: ltr;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 400;letter-spacing: 0px;line-height: 120%;text-align: left;mso-line-height-alt: 16.8px;box-sizing: border-box;">
+																	<p style="margin: 0;box-sizing: border-box;line-height: inherit;">Guests must observe a quiet time from 11:00 PM to 8:00 AM, keep common areas clean and orderly, and treat everyone with respect and courtesy. Failure to comply with these rules may result in corrective measures, including eviction without a refund.</p>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="row row-6" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+						<tbody style="box-sizing: border-box;">
+							<tr style="box-sizing: border-box;">
+								<td style="box-sizing: border-box;">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-radius: 0;color: #000000;width: 750px;margin: 0 auto;box-sizing: border-box;" width="750">
+										<tbody style="box-sizing: border-box;">
+											<tr style="box-sizing: border-box;">
+												<td class="column column-1" width="25%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;padding-left: 20px;padding-right: 10px;vertical-align: middle;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
+													<table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="width: 100%;padding-right: 0px;padding-left: 0px;box-sizing: border-box;">
+																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
+																	<div style="max-width: 78.75px;box-sizing: border-box;"><img src="https://d487b3526b.imgdist.com/pub/bfra/tk3qo566/r2q/b8w/l96/business-people.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="78.75" alt="Piggy Bank Icon" title="Piggy Bank Icon" height="auto"></div>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td class="column column-2" width="75%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;padding-bottom: 20px;padding-left: 10px;padding-right: 20px;padding-top: 20px;vertical-align: middle;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
+													<table class="paragraph_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="box-sizing: border-box;">
+																<div style="color: #3d3d3d;direction: ltr;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 400;letter-spacing: 0px;line-height: 120%;text-align: left;mso-line-height-alt: 16.8px;box-sizing: border-box;">
+																	<p style="margin: 0;margin-bottom: 16px;box-sizing: border-box;line-height: inherit;">&nbsp;</p>
+																	<p style="margin: 0;margin-bottom: 16px;box-sizing: border-box;line-height: inherit;">The stay of more people than agreed upon, or of pets not specified in the reservation, will lead to immediate expulsion from the property.</p>
+																	<p style="margin: 0;box-sizing: border-box;line-height: inherit;">&nbsp;</p>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="row row-7" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+						<tbody style="box-sizing: border-box;">
+							<tr style="box-sizing: border-box;">
+								<td style="box-sizing: border-box;">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-radius: 0;color: #000000;width: 750px;margin: 0 auto;box-sizing: border-box;" width="750">
+										<tbody style="box-sizing: border-box;">
+											<tr style="box-sizing: border-box;">
+												<td class="column column-1" width="25%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;padding-bottom: 30px;padding-left: 20px;padding-right: 10px;padding-top: 10px;vertical-align: middle;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
+													<table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="width: 100%;padding-right: 0px;padding-left: 0px;box-sizing: border-box;">
+																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
+																	<div style="max-width: 70.875px;box-sizing: border-box;"><img src="https://d487b3526b.imgdist.com/pub/bfra/tk3qo566/75f/whx/f0u/broken-pottery-svgrepo-com.svg" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="70.875" alt="Piggy Bank Icon" title="Piggy Bank Icon" height="auto"></div>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td class="column column-2" width="75%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;padding-bottom: 20px;padding-left: 10px;padding-right: 20px;padding-top: 20px;vertical-align: middle;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
+													<table class="paragraph_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="box-sizing: border-box;">
+																<div style="color: #3d3d3d;direction: ltr;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 400;letter-spacing: 0px;line-height: 120%;text-align: left;mso-line-height-alt: 16.8px;box-sizing: border-box;">
+																	<p style="margin: 0;box-sizing: border-box;line-height: inherit;">Guests must inform the host of any damage or defect in the property within 48 hours of their arrival. Failure to report this may lead to the guest being considered responsible for undeclared damages.</p>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="row row-8" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+						<tbody style="box-sizing: border-box;">
+							<tr style="box-sizing: border-box;">
+								<td style="box-sizing: border-box;">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-radius: 0;color: #000000;width: 750px;margin: 0 auto;box-sizing: border-box;" width="750">
+										<tbody style="box-sizing: border-box;">
+											<tr style="box-sizing: border-box;">
+												<td class="column column-1" width="25%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;padding-bottom: 10px;padding-left: 25px;padding-right: 10px;padding-top: 10px;vertical-align: middle;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
+													<table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-left: 10px;width: 100%;padding-right: 0px;box-sizing: border-box;">
+																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
+																	<div style="max-width: 76.25px;box-sizing: border-box;"><img src="https://d487b3526b.imgdist.com/pub/bfra/tk3qo566/qkr/hzx/unq/aceptar.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="76.25" alt="Notes Icon" title="Notes Icon" height="auto"></div>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td class="column column-2" width="75%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;padding-bottom: 20px;padding-left: 10px;padding-right: 20px;padding-top: 20px;vertical-align: middle;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
+													<table class="paragraph_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="padding-bottom: 10px;box-sizing: border-box;">
+																<div style="color: #3d3d3d;direction: ltr;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 400;letter-spacing: 0px;line-height: 120%;text-align: left;mso-line-height-alt: 16.8px;box-sizing: border-box;">
+																	<p style="margin: 0;box-sizing: border-box;line-height: inherit;"><strong style="box-sizing: border-box;">Apartamentos Cantabria will not be responsible of:</strong></p>
+																</div>
+															</td>
+														</tr>
+													</table>
+													<table class="paragraph_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;word-break: break-word;box-sizing: border-box;">
+														<tr style="box-sizing: border-box;">
+															<td class="pad" style="box-sizing: border-box;">
+																<div style="color: #3d3d3d;direction: ltr;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size: 12px;font-weight: 400;letter-spacing: 0px;line-height: 120%;text-align: justify;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;">
+																	<p style="margin: 0;box-sizing: border-box;line-height: inherit;">I. Negligence or service failures attributable to third parties.<br style="box-sizing: border-box;">II. Malfunction of swimming pools, recreational areas, or sports facilities, the use of which will be under the responsibility of the guest.<br style="box-sizing: border-box;">III. Thefts or losses suffered by guests on the property.<br style="box-sizing: border-box;">IV. Personal or material damage caused by force majeure or unforeseen situations.<br style="box-sizing: border-box;">V. Disturbances due to noise from nearby construction.<br style="box-sizing: border-box;">VI. Cuts in the supply of water, gas, or electricity by suppliers.<br style="box-sizing: border-box;">VII. Delays in the repair of appliances and boilers by official technical services.</p>
+																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table><!-- End -->
+</body>
+
+</html>"""
     # Generar el HTML completo con 3 páginas
     full_html = "<html><head><title>Documento Multi-página</title></head><body>"
     
@@ -478,8 +922,8 @@ def enviarMail(reservas,token):
             continue
         if reserva["localeForMessaging"] == "de":
             html=German_html
-        if reserva["localeForMessaging"] == "us":
-            html=German_html
+        if reserva["localeForMessaging"] == "en":
+            html=english_html
         if reserva["localeForMessaging"] == "fr":
             html=German_html
         listingID = reserva["listingMapId"]
