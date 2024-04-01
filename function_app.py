@@ -28,7 +28,7 @@ def enviarMail(reservas,token):
     
     for reserva in reservas["result"]:
         html = base_html
-        if reserva["status"] == "inquiry" or  reserva["status"] == "cancelled":
+        if reserva["status"] == "inquiry" or reserva["status"] == "cancelled":
             continue
         if reserva["guestCountry"] == "DE":
             html = html=translator.translate(html, target_language='de', format_='html')
@@ -43,7 +43,7 @@ def enviarMail(reservas,token):
         remin= round(total - pagado, 2)
         # Ejecutar dos veces por cada reserva
         for _ in range(2):
-            full_html += base_html.format(
+            full_html += html.format(
                 Apartamento=reserva["listingName"],
                 Nombre=reserva["guestName"],
                 Total_estancia=str(total) + " " + reserva["currency"],
