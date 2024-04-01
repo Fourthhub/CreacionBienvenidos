@@ -6,5 +6,5 @@ azure-functions
 WeasyPrint
 sendgrid
 requests
-googletrans
+google_trans_new  
 bs4
