@@ -254,7 +254,7 @@ def enviarMail(reservas,token):
                                                             <tr style="box-sizing: border-box;">
                                                                 <td class="pad" style="box-sizing: border-box;">
                                                                     <div style="color: #101112;direction: ltr;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;font-size: 9px;font-weight: 400;letter-spacing: 0px;line-height: 120%;text-align: center;mso-line-height-alt: 10.799999999999999px;box-sizing: border-box;">
-                                                                        <p style="margin: 0;box-sizing: border-box;line-height: inherit;"><em style="box-sizing: border-box;">----{<strong style="box-sizing: border-box;">facturacion</strong>}----</em></p>
+                                                                        <p style="margin: 0;box-sizing: border-box;line-height: inherit;"><em style="box-sizing: border-box;">----<strong style="box-sizing: border-box;">{facturacion}</strong>----</em></p>
                                                                     </div>
                                                                 </td>
                                                             </tr>
