@@ -50,11 +50,11 @@ def enviarMail(reservas,token):
         html = base_html
         if reserva["status"] == "inquiry" or reserva["status"] == "cancelled":
             continue
-        if reserva["guestCountry"] == "DE":
+        if reserva["localeForMessaging"] == "de":
             html=traducir(html,'de')
-        if reserva["guestCountry"] == "US":
+        if reserva["localeForMessaging"] == "en":
             html=traducir(html,'en')
-        if reserva["guestCountry"] == "FR":
+        if reserva["localeForMessaging"] == "fr":
             html=traducir(html,'fr')
         listingID = reserva["listingMapId"]
         address,serieFact = direccionListing(token, listingID)  # Obtener la dirección una sola vez por reserva
