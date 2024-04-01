@@ -7,3 +7,4 @@ WeasyPrint
 sendgrid
 requests
 googletrans
+bs4
