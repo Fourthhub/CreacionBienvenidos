@@ -9,14 +9,14 @@ from weasyprint import HTML
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileType, Disposition,To
 import azure.functions as func
-from googletrans import Translator
+from google_trans_new import google_translator  
 
 URL_HOSTAWAY_TOKEN = "https://api.hostaway.com/v1/accessTokens"
 value_mapping = {
     "Rocio": "R",
     "Alojamientos": "A"
 }
-translator = Translator()
+translator = google_translator()
 app = func.FunctionApp()
 def enviarMail(reservas,token):
     base_html = """<!DOCTYPE html><html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en" style="box-sizing:border-box"><head style="box-sizing:border-box"><title style="box-sizing:border-box"></title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" style="box-sizing:border-box"><meta name="viewport" content="width=device-width,initial-scale=1" style="box-sizing:border-box"><!--[if mso]><xml><o:officedocumentsettings><o:pixelsperinch>96</o:pixelsperinch><o:allowpng></o:officedocumentsettings></xml><![endif]--><!--[if !mso]>
