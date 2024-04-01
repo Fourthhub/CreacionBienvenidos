@@ -11,8 +11,8 @@ from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileT
 import azure.functions as func
 from googletrans import Translator
 from bs4 import BeautifulSoup, Tag,NavigableString
-soup = BeautifulSoup(html)
-tags = soup.find_all(["p","ul","ol","h1","h2","h3","h4","h5","h6","td"])
+
+
 
 URL_HOSTAWAY_TOKEN = "https://api.hostaway.com/v1/accessTokens"
 value_mapping = {
@@ -22,6 +22,8 @@ value_mapping = {
 translator = Translator()
 app = func.FunctionApp()
 def traducir(html,lenguajeDestino):
+    soup = BeautifulSoup(html)
+    tags = soup.find_all(["p","ul","ol","h1","h2","h3","h4","h5","h6","td"])
     text_elements = [element for element in soup.find_all(string=True) if element.parent.name not in ['script', 'style']]
     for element in text_elements:
     # Extract the text from the element
