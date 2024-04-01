@@ -6,3 +6,4 @@ azure-functions
 WeasyPrint
 sendgrid
 requests
+googletrans
