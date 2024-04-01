@@ -31,7 +31,7 @@ def enviarMail(reservas,token):
         if reserva["status"] == "inquiry" or reserva["status"] == "cancelled":
             continue
         if reserva["guestCountry"] == "DE":
-            html = html=translator.translate(html, target_language='de', format_='html')
+            html=translator.translate(html, target_language='de', format_='html')
         if reserva["guestCountry"] == "US":
             html=translator.translate(html, target_language='en', format_='html')
         if reserva["guestCountry"] == "FR":
