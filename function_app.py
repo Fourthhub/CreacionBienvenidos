@@ -10,9 +10,6 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileType, Disposition,To
 import azure.functions as func
 from googletrans import Translator
-from bs4 import BeautifulSoup, Tag,NavigableString
-
-
 
 URL_HOSTAWAY_TOKEN = "https://api.hostaway.com/v1/accessTokens"
 value_mapping = {
@@ -21,23 +18,6 @@ value_mapping = {
 }
 translator = Translator()
 app = func.FunctionApp()
-def traducir(html,lenguajeDestino):
-    soup = BeautifulSoup(html)
-    tags = soup.find_all(["p","ul","ol","h1","h2","h3","h4","h5","h6","td"])
-    text_elements = [element for element in soup.find_all(string=True) if element.parent.name not in ['script', 'style']]
-    for element in text_elements:
-    # Extract the text from the element
-        text = element.get_text(strip=True)
-    # Skip the element if it's empty
-        if not text:
-            continue
-    # Translate the text
-        translated_text = translator.translate(text, dest=lenguajeDestino)
-    # Replace the text in the element
-        element.replace_with(translated_text)
-    return "sexooooooooo" + lenguajeDestino
-
-
 def enviarMail(reservas,token):
     base_html = """<!DOCTYPE html><html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en" style="box-sizing:border-box"><head style="box-sizing:border-box"><title style="box-sizing:border-box"></title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" style="box-sizing:border-box"><meta name="viewport" content="width=device-width,initial-scale=1" style="box-sizing:border-box"><!--[if mso]><xml><o:officedocumentsettings><o:pixelsperinch>96</o:pixelsperinch><o:allowpng></o:officedocumentsettings></xml><![endif]--><!--[if !mso]>
 					<!--><!--
@@ -51,11 +31,11 @@ def enviarMail(reservas,token):
         if reserva["status"] == "inquiry" or reserva["status"] == "cancelled":
             continue
         if reserva["localeForMessaging"] == "de":
-            html=traducir(html,'de')
-        if reserva["localeForMessaging"] == "en":
-            html=traducir(html,'en')
+            html=translator.translate(html, target_language='de', format_='html')
+        if reserva["localeForMessaging"] == "us":
+            html=translator.translate(html, target_language='en', format_='html')
         if reserva["localeForMessaging"] == "fr":
-            html=traducir(html,'fr')
+            html=translator.translate(html, target_language='fr', format_='html')
         listingID = reserva["listingMapId"]
         address,serieFact = direccionListing(token, listingID)  # Obtener la dirección una sola vez por reserva
         pagado= remainingBalance(token,reserva["id"])
