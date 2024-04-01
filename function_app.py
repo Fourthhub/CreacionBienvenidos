@@ -35,7 +35,7 @@ def traducir(html,lenguajeDestino):
         translated_text = translator.translate(text, dest=lenguajeDestino)
     # Replace the text in the element
         element.replace_with(translated_text)
-    return "sexooooooooo"
+    return "sexooooooooo" + lenguajeDestino
 
 
 def enviarMail(reservas,token):
