@@ -918,7 +918,7 @@ def enviarMail(reservas,token):
     
     for reserva in reservas["result"]:
         html = base_html
-        if reserva["status"] == "inquiry" or reserva["status"] == "cancelled":
+        if reserva["status"] != "modified" and reserva["status"] != "new":
             continue
         if reserva["localeForMessaging"] == "de":
             html=German_html
