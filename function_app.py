@@ -928,9 +928,10 @@ def enviarMail(reservas,token):
             html=German_html
         listingID = reserva["listingMapId"]
         address,serieFact = direccionListing(token, listingID)  # Obtener la dirección una sola vez por reserva
-        pagado= remainingBalance(token,reserva["id"])
+        
         total= reserva["totalPrice"]
-        remin= round(total - pagado, 2)
+        remin= reserva["remainingBalance"]
+        pagado=round(total - remin, 2)
         # Ejecutar dos veces por cada reserva
         for _ in range(2):
             full_html += html.format(
@@ -998,7 +999,7 @@ def obtener_acceso_hostaway():
 
 def reservasHoy(arrivalStartDate, arrivalEndDate,token):
     
-    url = f"https://api.hostaway.com/v1/reservations?arrivalStartDate={arrivalStartDate}&arrivalEndDate={arrivalEndDate}&includeResources=1" 
+    url = f"https://api.hostaway.com/v1/reservations?arrivalStartDate={arrivalStartDate}&arrivalEndDate={arrivalEndDate}&includeResources=1&includePayments=1" 
 
     headers = {
         'Authorization': f"Bearer {token}",
