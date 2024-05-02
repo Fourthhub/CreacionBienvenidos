@@ -1411,14 +1411,18 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     
     for reserva in reservas["result"]:
         html = base_html
+        huespedes="huespedes"
         if reserva["status"] != "modified" and reserva["status"] != "new":
             continue
         if reserva["localeForMessaging"] == "de":
             html=German_html
+            huespedes="Gäste"
         if reserva["localeForMessaging"] == "en":
             html=english_html
+            huespedes= "guests"
         if reserva["localeForMessaging"] == "fr":
             html=french_html
+            huespedes="les hôtes"
         listingID = reserva["listingMapId"]
         address,serieFact = direccionListing(token, listingID)  # Obtener la dirección una sola vez por reserva
         
@@ -1428,7 +1432,8 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
         # Ejecutar dos veces por cada reserva
         mascota = ""
         if hayMascota(token,reserva["id"]):
-            mascota = "+ 🐶"
+            mascota= huespedes + "<p style="margin: 0;font-size: 14px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">" + "+ 🐶</p>"
+            
 
         huesped_mascota = str(reserva["numberOfGuests"]) + mascota
         for _ in range(2):
