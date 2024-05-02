@@ -1427,7 +1427,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
         pagado=round(total - remin, 2)
         # Ejecutar dos veces por cada reserva
         mascota = ""
-        if hayMascota(reserva["id"]):
+        if hayMascota(token,reserva["id"]):
             mascota = "+ 🐶"
 
 
