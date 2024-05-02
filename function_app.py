@@ -224,7 +224,7 @@ def enviarMail(reservas,token):
 															<td class="pad" style="padding-bottom: 10px;padding-left: 40px;padding-right: 10px;padding-top: 10px;box-sizing: border-box;">
 																<div style="font-family: sans-serif;box-sizing: border-box;">
 																	<div class="" style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #000000;line-height: 1.2;box-sizing: border-box;">
-																		<p style="margin: 0;font-size: 12px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">👤 &nbsp;{numero_de_huespeds}</p>
+																		<p style="font-size: 12px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">👤 &nbsp;{numero_de_huespeds}</p>
 																	</div>
 																</div>
 															</td>a
@@ -720,7 +720,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
                                                                 <td class="pad" style="padding-bottom: 10px;padding-left: 40px;padding-right: 10px;padding-top: 10px;box-sizing: border-box;">
                                                                     <div style="font-family: sans-serif;box-sizing: border-box;">
                                                                         <div class style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #000000;line-height: 1.2;box-sizing: border-box;">
-                                                                            <p style="margin: 0;font-size: 12px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">👤 &nbsp;{numero_de_huespeds}</p>
+                                                                            <p style="font-size: 12px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">👤 &nbsp;{numero_de_huespeds}</p>
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -1168,7 +1168,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
 															<td class="pad" style="padding-bottom: 10px;padding-left: 40px;padding-right: 10px;padding-top: 10px;box-sizing: border-box;">
 																<div style="font-family: sans-serif;box-sizing: border-box;">
 																	<div class style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #000000;line-height: 1.2;box-sizing: border-box;">
-																		<p style="margin: 0;font-size: 12px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">👤 &nbsp;{numero_de_huespeds}</p>
+																		<p style="font-size: 12px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">👤 &nbsp;{numero_de_huespeds}</p>
 																	</div>
 																</div>
 															</td>
@@ -1411,7 +1411,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     
     for reserva in reservas["result"]:
         html = base_html
-        huespedes="huespedes"
+        huespedes=" huespedes"
         if reserva["status"] != "modified" and reserva["status"] != "new":
             continue
         if reserva["localeForMessaging"] == "de":
@@ -1430,12 +1430,12 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
         remin= reserva["remainingBalance"]
         pagado=round(total - remin, 2)
         # Ejecutar dos veces por cada reserva
-        mascota = ""
+        
         if hayMascota(token,reserva["id"]):
-            mascota= huespedes + """<p style="margin: 0;font-size: 14px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">""" + "+ 🐶</p>"
+            huespedes= huespedes + """<p style="font-size: 14px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">""" + "+ 🐶</p>"
             
 
-        huesped_mascota = str(reserva["numberOfGuests"]) + mascota
+        huesped_mascota = str(reserva["numberOfGuests"]) + huespedes
         for _ in range(2):
             
             full_html += html.format(
