@@ -1418,7 +1418,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
         if reserva["localeForMessaging"] == "en":
             html=english_html
         if reserva["localeForMessaging"] == "fr":
-            html=French_html
+            html=french_html
         listingID = reserva["listingMapId"]
         address,serieFact = direccionListing(token, listingID)  # Obtener la dirección una sola vez por reserva
         
