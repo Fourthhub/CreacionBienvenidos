@@ -1432,7 +1432,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
         # Ejecutar dos veces por cada reserva
         mascota = ""
         if hayMascota(token,reserva["id"]):
-            mascota= huespedes + "<p style="margin: 0;font-size: 14px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">" + "+ 🐶</p>"
+            mascota= huespedes + """<p style="margin: 0;font-size: 14px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">""" + "+ 🐶</p>"
             
 
         huesped_mascota = str(reserva["numberOfGuests"]) + mascota
