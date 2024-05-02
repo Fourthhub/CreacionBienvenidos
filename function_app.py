@@ -1430,8 +1430,9 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
         if hayMascota(token,reserva["id"]):
             mascota = "+ 🐶"
 
-
+        huesped_mascota = str(reserva["numberOfGuests"]) + mascota
         for _ in range(2):
+            
             full_html += html.format(
                 Apartamento=reserva["listingName"],
                 Nombre=reserva["guestName"],
@@ -1441,7 +1442,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
                 address=address,  # Usar la dirección obtenida previamente
                 fechachekin=reserva["arrivalDate"],
                 fechacheckout=reserva["departureDate"],
-                numero_de_huespeds=str(reserva["numberOfGuests"]) + mascota,
+                numero_de_huespeds=huesped_mascota,
                 facturacion=serieFact
             ) + "<div style='page-break-after: always;'></div>"
         full_html += "</body></html>"
