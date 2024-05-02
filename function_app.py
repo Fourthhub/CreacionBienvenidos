@@ -1426,6 +1426,11 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
         remin= reserva["remainingBalance"]
         pagado=round(total - remin, 2)
         # Ejecutar dos veces por cada reserva
+        mascota = ""
+        if hayMascota(reserva["id"]):
+            mascota = "+ 1 Pet"
+
+
         for _ in range(2):
             full_html += html.format(
                 Apartamento=reserva["listingName"],
@@ -1436,7 +1441,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
                 address=address,  # Usar la dirección obtenida previamente
                 fechachekin=reserva["arrivalDate"],
                 fechacheckout=reserva["departureDate"],
-                numero_de_huespeds=str(reserva["numberOfGuests"]),
+                numero_de_huespeds=str(reserva["numberOfGuests"]) + mascota,
                 facturacion=serieFact
             ) + "<div style='page-break-after: always;'></div>"
         full_html += "</body></html>"
@@ -1525,8 +1530,8 @@ def direccionListing(token,listingId):
 
     return data['result']["address"],serie
 
-def remainingBalance(token,idReserva):
-    url= f"https://api.hostaway.com/v1/guestPayments/charges?reservationId={idReserva}"
+def hayMascota(token,idReserva):
+    url= f"https://api.hostaway.com/v1/financeField/{idReserva}"
     headers = {
         'Authorization': f"Bearer {token}",
         'Content-type': "application/json",
@@ -1534,11 +1539,11 @@ def remainingBalance(token,idReserva):
     }
     response = requests.get(url, headers=headers)
     data = response.json()['result']
-    pagado=0
-    for charge in data:
-        if charge['status']=="paid":
-            pagado+=charge['amount']
-    return pagado
+    
+    for element in data:
+        if element['name']=="petFee":
+            return True
+    return False
 
 @app.function_name(name="crecionBienvenido")
 @app.schedule(schedule="0 0 9 * * *", arg_name="myTimer", run_on_startup=False,
