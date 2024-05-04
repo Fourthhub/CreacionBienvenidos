@@ -132,7 +132,7 @@ def enviarMail(reservas,token):
 															<td class="pad" style="padding-bottom: 10px;padding-left: 50px;padding-right: 10px;padding-top: 10px;box-sizing: border-box;">
 																<div style="font-family: 'Trebuchet MS', Tahoma, sans-serif;box-sizing: border-box;">
 																	<div class="" style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #080808;line-height: 1.2;box-sizing: border-box;">
-																		<p style="margin: 0;font-size: 12px;text-align: left;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;"><span style="font-size: 14px;box-sizing: border-box;">À échéance aujourd'hui</span></p>
+																		<p style="margin: 0;font-size: 12px;text-align: left;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;"><span style="font-size: 14px;box-sizing: border-box;">À échéance aujourd'hui:</span></p>
 																	</div>
 																</div>
 															</td>
@@ -484,17 +484,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
 															<td class="pad" style="vertical-align: middle;color: #1e0e4b;font-family: 'Inter', sans-serif;font-size: 15px;padding-bottom: 5px;padding-top: 5px;text-align: center;box-sizing: border-box;">
 																<table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
 																	<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
-																		<td class="alignment" style="vertical-align: middle;text-align: center;box-sizing: border-box;"><!--[if vml]><table align="center" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]-->
-																			<!--[if !vml]><!-->
-																			<table class="icons-inner" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;display: inline-block;margin-right: -4px;padding-left: 0px;padding-right: 0px;box-sizing: border-box;" cellpadding="0" cellspacing="0" role="presentation"><!--<![endif]-->
-																				<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
-																					<td style="vertical-align: middle;text-align: center;padding-top: 5px;padding-bottom: 5px;padding-left: 5px;padding-right: 6px;box-sizing: border-box;"><a href="http://designedwithbeefree.com/" target="_blank" style="text-decoration: none;box-sizing: border-box;"><img class="icon" alt="Beefree Logo" src="wqcu1geg09.preview-postedstuff.com_files/Beefree-logo.png" height="auto" width="34" align="middle" style="display: block;height: auto;margin: 0 auto;border: 0;box-sizing: border-box;"></a></td>
-																					<td style="font-family: 'Inter', sans-serif;font-size: 15px;font-weight: undefined;color: #1e0e4b;vertical-align: middle;letter-spacing: undefined;text-align: center;box-sizing: border-box;"><a href="http://designedwithbeefree.com/" target="_blank" style="color: #1e0e4b;text-decoration: none;box-sizing: border-box;">Designed with Beefree</a></td>
-																				</tr>
-																			</tbody></table>
-																		</td>
-																	</tr>
-																</tbody></table>
+																		<td class="alignment" style="vertical-align: middle;text-align: center;box-sizing: border-box;"><!--[if vml]><table align="center" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
 															</td>
 														</tr>
 													</tbody></table>
