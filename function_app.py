@@ -46,7 +46,7 @@ def enviarMail(reservas,token):
 														<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
 															<td class="pad" style="padding-bottom: 10px;padding-left: 15px;padding-right: 15px;width: 100%;box-sizing: border-box;">
 																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
-																	<div style="max-width: 213px;box-sizing: border-box;"><img src="dew_files/Logo%20AC%202024(1).svg" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="213" height="auto"></div>
+																	<div style="max-width: 213px;box-sizing: border-box;"><img src="https://d487b3526b.imgdist.com/public/users/Integrators/BeeProAgency/1147963_1133632/Logo%20AC%202024%281%29.svg" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="213" height="auto"></div>
 																</div>
 															</td>
 														</tr>
@@ -275,7 +275,7 @@ def enviarMail(reservas,token):
 														<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
 															<td class="pad" style="width: 100%;padding-right: 0px;padding-left: 0px;box-sizing: border-box;">
 																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
-																	<div style="max-width: 70.875px;box-sizing: border-box;"><img src="dew_files/verificado.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="70.875" alt="Headset Icon" title="Headset Icon" height="auto"></div>
+																	<div style="max-width: 70.875px;box-sizing: border-box;"><img src="https://d487b3526b.imgdist.com/pub/bfra/tk3qo566/9rf/x64/d4m/verificado.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="70.875" alt="Headset Icon" title="Headset Icon" height="auto"></div>
 																</div>
 															</td>
 														</tr>
@@ -315,7 +315,7 @@ logement à la fin de votre séjour.</p>
 														<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
 															<td class="pad" style="width: 100%;padding-right: 0px;padding-left: 0px;box-sizing: border-box;">
 																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
-																	<div style="max-width: 78.75px;box-sizing: border-box;"><img src="dew_files/ruido.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="78.75" alt="Paper Sheet With a Chart Icon" title="Paper Sheet With a Chart Icon" height="auto"></div>
+																	<div style="max-width: 78.75px;box-sizing: border-box;"><img src="https://d487b3526b.imgdist.com/pub/bfra/tk3qo566/l0w/k40/183/ruido.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="78.75" alt="Paper Sheet With a Chart Icon" title="Paper Sheet With a Chart Icon" height="auto"></div>
 																</div>
 															</td>
 														</tr>
@@ -355,7 +355,7 @@ compris l'évacuation sans remboursement.</p>
 														<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
 															<td class="pad" style="width: 100%;padding-right: 0px;padding-left: 0px;box-sizing: border-box;">
 																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
-																	<div style="max-width: 78.75px;box-sizing: border-box;"><img src="dew_files/business-people.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="78.75" alt="Piggy Bank Icon" title="Piggy Bank Icon" height="auto"></div>
+																	<div style="max-width: 78.75px;box-sizing: border-box;"><img src="https://d487b3526b.imgdist.com/pub/bfra/tk3qo566/r2q/b8w/l96/business-people.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="78.75" alt="Piggy Bank Icon" title="Piggy Bank Icon" height="auto"></div>
 																</div>
 															</td>
 														</tr>
@@ -396,7 +396,7 @@ Ausweisung aus dem Eigentum.</p>
 														<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
 															<td class="pad" style="width: 100%;padding-right: 0px;padding-left: 0px;box-sizing: border-box;">
 																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
-																	<div style="max-width: 70.875px;box-sizing: border-box;"><img src="dew_files/broken-pottery-svgrepo-com.svg" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="70.875" alt="Piggy Bank Icon" title="Piggy Bank Icon" height="auto"></div>
+																	<div style="max-width: 70.875px;box-sizing: border-box;"><img src="https://d487b3526b.imgdist.com/pub/bfra/tk3qo566/75f/whx/f0u/broken-pottery-svgrepo-com.svg" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="70.875" alt="Piggy Bank Icon" title="Piggy Bank Icon" height="auto"></div>
 																</div>
 															</td>
 														</tr>
@@ -435,7 +435,7 @@ l'hôte dans les 48 heures suivant leur arrivée de tout dommage ou défaut
 														<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
 															<td class="pad" style="padding-left: 10px;width: 100%;padding-right: 0px;box-sizing: border-box;">
 																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
-																	<div style="max-width: 76.25px;box-sizing: border-box;"><img src="dew_files/aceptar.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="76.25" alt="Notes Icon" title="Notes Icon" height="auto"></div>
+																	<div style="max-width: 76.25px;box-sizing: border-box;"><img src="https://d487b3526b.imgdist.com/pub/bfra/tk3qo566/qkr/hzx/unq/aceptar.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="76.25" alt="Notes Icon" title="Notes Icon" height="auto"></div>
 																</div>
 															</td>
 														</tr>
