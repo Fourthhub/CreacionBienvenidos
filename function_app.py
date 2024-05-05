@@ -46,7 +46,7 @@ def enviarMail(reservas,token):
 														<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
 															<td class="pad" style="padding-bottom: 10px;padding-left: 15px;padding-right: 15px;width: 100%;box-sizing: border-box;">
 																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
-																	<div style="max-width: 213px;box-sizing: border-box;"><img src="wqcu1geg09.preview-postedstuff.com_files/Logo%20AC%202024(1).svg" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="213" height="auto"></div>
+																	<div style="max-width: 213px;box-sizing: border-box;"><img src="dew_files/Logo%20AC%202024(1).svg" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="213" height="auto"></div>
 																</div>
 															</td>
 														</tr>
@@ -132,7 +132,7 @@ def enviarMail(reservas,token):
 															<td class="pad" style="padding-bottom: 10px;padding-left: 50px;padding-right: 10px;padding-top: 10px;box-sizing: border-box;">
 																<div style="font-family: 'Trebuchet MS', Tahoma, sans-serif;box-sizing: border-box;">
 																	<div class="" style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #080808;line-height: 1.2;box-sizing: border-box;">
-																		<p style="margin: 0;font-size: 12px;text-align: left;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;"><span style="font-size: 14px;box-sizing: border-box;">À échéance aujourd'hui:</span></p>
+																		<p style="margin: 0;font-size: 12px;text-align: left;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;"><span style="font-size: 14px;box-sizing: border-box;">À échéance aujourd'hui</span></p>
 																	</div>
 																</div>
 															</td>
@@ -224,10 +224,10 @@ def enviarMail(reservas,token):
 															<td class="pad" style="padding-bottom: 10px;padding-left: 40px;padding-right: 10px;padding-top: 10px;box-sizing: border-box;">
 																<div style="font-family: sans-serif;box-sizing: border-box;">
 																	<div class="" style="font-size: 12px;font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;mso-line-height-alt: 14.399999999999999px;color: #000000;line-height: 1.2;box-sizing: border-box;">
-																		<p style="font-size: 12px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">👤 &nbsp;{numero_de_huespeds}</p>
+																		<p style="margin: 0;font-size: 12px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">👤 &nbsp;{Numero_de_huespedes}</p>
 																	</div>
 																</div>
-															</td>a
+															</td>
 														</tr>
 													</tbody></table>
 												</td>
@@ -275,7 +275,7 @@ def enviarMail(reservas,token):
 														<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
 															<td class="pad" style="width: 100%;padding-right: 0px;padding-left: 0px;box-sizing: border-box;">
 																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
-																	<div style="max-width: 70.875px;box-sizing: border-box;"><img src="wqcu1geg09.preview-postedstuff.com_files/verificado.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="70.875" alt="Headset Icon" title="Headset Icon" height="auto"></div>
+																	<div style="max-width: 70.875px;box-sizing: border-box;"><img src="dew_files/verificado.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="70.875" alt="Headset Icon" title="Headset Icon" height="auto"></div>
 																</div>
 															</td>
 														</tr>
@@ -315,7 +315,7 @@ logement à la fin de votre séjour.</p>
 														<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
 															<td class="pad" style="width: 100%;padding-right: 0px;padding-left: 0px;box-sizing: border-box;">
 																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
-																	<div style="max-width: 78.75px;box-sizing: border-box;"><img src="wqcu1geg09.preview-postedstuff.com_files/ruido.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="78.75" alt="Paper Sheet With a Chart Icon" title="Paper Sheet With a Chart Icon" height="auto"></div>
+																	<div style="max-width: 78.75px;box-sizing: border-box;"><img src="dew_files/ruido.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="78.75" alt="Paper Sheet With a Chart Icon" title="Paper Sheet With a Chart Icon" height="auto"></div>
 																</div>
 															</td>
 														</tr>
@@ -355,7 +355,7 @@ compris l'évacuation sans remboursement.</p>
 														<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
 															<td class="pad" style="width: 100%;padding-right: 0px;padding-left: 0px;box-sizing: border-box;">
 																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
-																	<div style="max-width: 78.75px;box-sizing: border-box;"><img src="wqcu1geg09.preview-postedstuff.com_files/business-people.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="78.75" alt="Piggy Bank Icon" title="Piggy Bank Icon" height="auto"></div>
+																	<div style="max-width: 78.75px;box-sizing: border-box;"><img src="dew_files/business-people.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="78.75" alt="Piggy Bank Icon" title="Piggy Bank Icon" height="auto"></div>
 																</div>
 															</td>
 														</tr>
@@ -396,7 +396,7 @@ Ausweisung aus dem Eigentum.</p>
 														<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
 															<td class="pad" style="width: 100%;padding-right: 0px;padding-left: 0px;box-sizing: border-box;">
 																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
-																	<div style="max-width: 70.875px;box-sizing: border-box;"><img src="wqcu1geg09.preview-postedstuff.com_files/broken-pottery-svgrepo-com.svg" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="70.875" alt="Piggy Bank Icon" title="Piggy Bank Icon" height="auto"></div>
+																	<div style="max-width: 70.875px;box-sizing: border-box;"><img src="dew_files/broken-pottery-svgrepo-com.svg" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="70.875" alt="Piggy Bank Icon" title="Piggy Bank Icon" height="auto"></div>
 																</div>
 															</td>
 														</tr>
@@ -435,7 +435,7 @@ l'hôte dans les 48 heures suivant leur arrivée de tout dommage ou défaut
 														<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
 															<td class="pad" style="padding-left: 10px;width: 100%;padding-right: 0px;box-sizing: border-box;">
 																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
-																	<div style="max-width: 76.25px;box-sizing: border-box;"><img src="wqcu1geg09.preview-postedstuff.com_files/aceptar.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="76.25" alt="Notes Icon" title="Notes Icon" height="auto"></div>
+																	<div style="max-width: 76.25px;box-sizing: border-box;"><img src="dew_files/aceptar.png" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="76.25" alt="Notes Icon" title="Notes Icon" height="auto"></div>
 																</div>
 															</td>
 														</tr>
@@ -484,7 +484,11 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
 															<td class="pad" style="vertical-align: middle;color: #1e0e4b;font-family: 'Inter', sans-serif;font-size: 15px;padding-bottom: 5px;padding-top: 5px;text-align: center;box-sizing: border-box;">
 																<table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
 																	<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
-																		<td class="alignment" style="vertical-align: middle;text-align: center;box-sizing: border-box;"><!--[if vml]><table align="center" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+																		<td class="alignment" style="vertical-align: middle;text-align: center;box-sizing: border-box;"><!--[if vml]><table align="center" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]-->
+																			<!--[if !vml]><!-->
+																		</td>
+																	</tr>
+																</tbody></table>
 															</td>
 														</tr>
 													</tbody></table>
@@ -1420,7 +1424,6 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
         remin= reserva["remainingBalance"]
         pagado=round(total - remin, 2)
         # Ejecutar dos veces por cada reserva
-        
         if hayMascota(token,reserva["id"]):
             huespedes= huespedes + """<p style="font-size: 16px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">""" + "+ 🐶</p>"
             
