@@ -367,10 +367,7 @@ compris l'évacuation sans remboursement.</p>
 															<td class="pad" style="box-sizing: border-box;">
 																<div style="color: #3d3d3d;direction: ltr;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size: 14px;font-weight: 400;letter-spacing: 0px;line-height: 120%;text-align: left;mso-line-height-alt: 16.8px;box-sizing: border-box;">
 																	<p style="margin: 0;margin-bottom: 16px;box-sizing: border-box;line-height: inherit;">&nbsp;</p>
-																	<p style="margin: 0;margin-bottom: 16px;box-sizing: border-box;line-height: inherit;">Der 
-Aufenthalt von mehr Personen als vereinbart oder von Haustieren, die 
-nicht in der Reservierung angegeben sind, führt zur sofortigen 
-Ausweisung aus dem Eigentum.</p>
+																	<p style="margin: 0;margin-bottom: 16px;box-sizing: border-box;line-height: inherit;">La présence de plus de personnes que convenu ou d'animaux domestiques non mentionnés dans la réservation entraînera une expulsion immédiate de la propriété.</p>
 																	<p style="margin: 0;box-sizing: border-box;line-height: inherit;">&nbsp;</p>
 																</div>
 															</td>
@@ -1436,10 +1433,10 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
                 Nombre=reserva["guestName"],
                 Total_estancia=str(total) + " " + reserva["currency"],
                 Pagado=str(pagado)+ " " + reserva["currency"],  # Asegúrate de definir cómo obtener este valor
-                restante=str(remin) + " " + reserva["currency"],
+                restante=str(round(remin,2)) + " " + reserva["currency"],
                 address=address,  # Usar la dirección obtenida previamente
                 fechachekin=reserva["arrivalDate"],
-                fechacheckout=reserva["departureDate"],
+                fechacheckout=reserva["dsepartureDate"],
                 numero_de_huespeds=huesped_mascota,
                 facturacion=serieFact
             ) + "<div style='page-break-after: always;'></div>"
