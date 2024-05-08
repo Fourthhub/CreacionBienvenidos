@@ -1542,7 +1542,7 @@ def hayMascota(token,idReserva):
     return False
 
 @app.function_name(name="crecionBienvenido")
-@app.schedule(schedule="0 0 9 * * *", arg_name="myTimer", run_on_startup=False,
+@app.schedule(schedule="0 0 8 * * *", arg_name="myTimer", run_on_startup=False,
               use_monitor=False) 
 def crecionBienvenido(myTimer: func.TimerRequest) -> None:
     token = obtener_acceso_hostaway()
