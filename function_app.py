@@ -1398,52 +1398,64 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
 </html>"""
 
     # Generar el HTML completo con 3 páginas
-    full_html = "<html><head><title>Documento Multi-página</title></head><body>"
-    
+    full_html_I = "<html><head><title>Documento Multi-página I</title></head><body>"
+    full_html_S = "<html><head><title>Documento Multi-página S</title></head><body>"
+
     for reserva in reservas["result"]:
-        html = base_html
-        huespedes=" huéspedes"
         if reserva["status"] != "modified" and reserva["status"] != "new":
             continue
+
+        # Seleccionar la plantilla HTML según el idioma del mensaje
         if reserva["localeForMessaging"] == "de":
-            html=German_html
-            huespedes=" Gäste"
-        if reserva["localeForMessaging"] == "en":
-            html=english_html
-            huespedes= " guests"
-        if reserva["localeForMessaging"] == "fr":
-            html=french_html
-            huespedes=" les hôtes"
+            html = German_html
+            huespedes = " Gäste"
+        elif reserva["localeForMessaging"] == "en":
+            html = english_html
+            huespedes = " guests"
+        elif reserva["localeForMessaging"] == "fr":
+            html = french_html
+            huespedes = " les hôtes"
+        else:
+            html = base_html
+            huespedes = " huéspedes"
+
         listingID = reserva["listingMapId"]
-        address,serieFact = direccionListing(token, listingID)  # Obtener la dirección una sola vez por reserva
-        
-        total= reserva["totalPrice"]
-        remin= reserva["remainingBalance"]
-        pagado=round(total - remin, 2)
+        address, serieFact = direccionListing(token, listingID)  # Obtener la dirección una sola vez por reserva
+
+        total = reserva["totalPrice"]
+        remin = reserva["remainingBalance"]
+        pagado = round(total - remin, 2)
+
         # Ejecutar dos veces por cada reserva
-        if hayMascota(token,reserva["id"]):
-            huespedes= huespedes + """<p style="font-size: 16px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">""" + "+ 🐶</p>"
-            
+        if hayMascota(token, reserva["id"]):
+            huespedes += """<p style="font-size: 16px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">""" + "+ 🐶</p>"
 
         huesped_mascota = str(reserva["numberOfGuests"]) + huespedes
         for _ in range(2):
-            
-            full_html += html.format(
+            formatted_html = html.format(
                 Apartamento=reserva["listingName"],
                 Nombre=reserva["guestName"],
                 Total_estancia=str(total) + " " + reserva["currency"],
-                Pagado=str(pagado)+ " " + reserva["currency"],  # Asegúrate de definir cómo obtener este valor
-                restante=str(round(remin,2)) + " " + reserva["currency"],
+                Pagado=str(pagado) + " " + reserva["currency"],  # Asegúrate de definir cómo obtener este valor
+                restante=str(round(remin, 2)) + " " + reserva["currency"],
                 address=address,  # Usar la dirección obtenida previamente
                 fechachekin=reserva["arrivalDate"],
                 fechacheckout=reserva["departureDate"],
                 numero_de_huespeds=huesped_mascota,
                 facturacion=serieFact
             ) + "<div style='page-break-after: always;'></div>"
-        full_html += "</body></html>"
+
+            if reserva["listingName"].startswith('I'):
+                full_html_I += formatted_html
+            elif reserva["listingName"].startswith('S'):
+                full_html_S += formatted_html
+
+    full_html_I += "</body></html>"
+    full_html_S += "</body></html>"
+
     # Generar el PDF desde HTML y mantenerlo en memoria
-    
-    encoded_file = base64.b64encode(full_html.encode()).decode()
+    encoded_file_I = base64.b64encode(full_html_I.encode()).decode()
+    encoded_file_S = base64.b64encode(full_html_S.encode()).decode()
     
 
     # Crear el mensaje de correo con SendGrid
@@ -1457,13 +1469,22 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
         html_content='<strong>Los bienvenidos de hoy en isla</strong>'
     )
 
-    # Adjuntar el PDF codificado
-    attachment = Attachment()
-    attachment.file_content = FileContent(encoded_file)
-    attachment.file_type = FileType('text/html')
-    attachment.file_name = FileName('bienvenidos.html')
-    attachment.disposition = Disposition('attachment')
-    message.attachment = attachment
+    attachment_I = Attachment()
+    attachment_I.file_content = FileContent(encoded_file_I)
+    attachment_I.file_type = FileType('text/html')
+    attachment_I.file_name = FileName('bienvenidos_I.html')
+    attachment_I.disposition = Disposition('attachment')
+
+    # Adjunto para apartamentos que empiezan con 'S'
+    attachment_S = Attachment()
+    attachment_S.file_content = FileContent(encoded_file_S)
+    attachment_S.file_type = FileType('text/html')
+    attachment_S.file_name = FileName('bienvenidos_S.html')
+    attachment_S.disposition = Disposition('attachment')
+
+    # Añadir ambos adjuntos al mensaje
+    message.add_attachment(attachment_I)
+    message.add_attachment(attachment_S)
 
     
     try:
