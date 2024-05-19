@@ -79,7 +79,7 @@ def enviarMail(reservas,token):
 														<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
 															<td class="pad" style="padding-bottom: 10px;padding-left: 15px;padding-right: 15px;width: 100%;box-sizing: border-box;">
 																<div class="alignment" align="center" style="line-height: 10px;box-sizing: border-box;">
-																	<div style="max-width: 213px;box-sizing: border-box;"><img src="https://d487b3526b.imgdist.com/public/users/Integrators/BeeProAgency/1147963_1133632/Logo%20AC%202024%281%29.svg" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="213" height="auto"></div>
+																	<div style="max-width: 190px;box-sizing: border-box;"><img src="https://d487b3526b.imgdist.com/public/users/Integrators/BeeProAgency/1147963_1133632/Logo%20AC%202024%281%29.svg" style="display: block;height: auto;border: 0;width: 100%;box-sizing: border-box;" width="190" height="auto"></div>
 																</div>
 															</td>
 														</tr>
@@ -501,31 +501,32 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
 							</tr>
 						</tbody>
 					</table>
-					<table class="row row-9" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;background-color: #ffffff;box-sizing: border-box;">
-						<tbody style="box-sizing: border-box;">
-							<tr style="box-sizing: border-box;">
-								<td style="box-sizing: border-box;">
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;background-color: #ffffff;color: #000000;width: 750px;margin: 0 auto;box-sizing: border-box;" width="750">
-										<tbody style="box-sizing: border-box;">
-											<tr style="box-sizing: border-box;">
-												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;font-weight: 400;text-align: left;padding-bottom: 5px;padding-top: 5px;vertical-align: top;border-top: 0px;border-right: 0px;border-bottom: 0px;border-left: 0px;box-sizing: border-box;">
-													<table class="icons_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;text-align: center;box-sizing: border-box;">
-														<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
-															<td class="pad" style="vertical-align: middle;color: #1e0e4b;font-family: 'Inter', sans-serif;font-size: 15px;padding-bottom: 5px;padding-top: 5px;text-align: center;box-sizing: border-box;">
-																<table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;box-sizing: border-box;">
-																	<tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;">
-																		<td class="alignment" style="vertical-align: middle;text-align: center;box-sizing: border-box;"><!--[if vml]><table align="center" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]-->
+                    	<table class="row row-9" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff;">
+						<tbody>
+							<tr>
+								<td>
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; color: #000000; width: 750px; margin: 0 auto;" width="750">
+										<tbody>
+											<tr>
+												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
+													<table class="icons_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; text-align: center;">
+														<tr>
+															<td class="pad" style="vertical-align: middle; color: #1e0e4b; font-family: 'Inter', sans-serif; font-size: 15px; padding-bottom: 5px; padding-top: 5px; text-align: center;">
+																<table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="alignment" style="vertical-align: middle; text-align: center;"><!--[if vml]><table align="center" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]-->
+																			<!--[if !vml]><!-->
 																			<table class="icons-inner" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;" cellpadding="0" cellspacing="0" role="presentation"><!--<![endif]-->
 																				<tr>
-																					<td style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: undefined; color: #1e0e4b; vertical-align: middle; letter-spacing: undefined; text-align: center;"><a href="http://apartamentoscantabria.net/" target="_blank" style="color: #1e0e4b; text-decoration: none;">+34 942679435</a></td>
+																					<td style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: undefined; color: #1e0e4b; vertical-align: middle; letter-spacing: undefined; text-align: center;"><a href="http://designedwithbeefree.com/" target="_blank" style="color: #1e0e4b; text-decoration: none;">+34 942679435</a></td>
 																				</tr>
 																			</table>
 																		</td>
 																	</tr>
-																</tbody></table>
+																</table>
 															</td>
 														</tr>
-													</tbody></table>
+													</table>
 												</td>
 											</tr>
 										</tbody>
@@ -982,6 +983,40 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
                                 </tr>
                             </tbody>
                         </table>
+                        	<table class="row row-9" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff;">
+						<tbody>
+							<tr>
+								<td>
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; color: #000000; width: 750px; margin: 0 auto;" width="750">
+										<tbody>
+											<tr>
+												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
+													<table class="icons_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; text-align: center;">
+														<tr>
+															<td class="pad" style="vertical-align: middle; color: #1e0e4b; font-family: 'Inter', sans-serif; font-size: 15px; padding-bottom: 5px; padding-top: 5px; text-align: center;">
+																<table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="alignment" style="vertical-align: middle; text-align: center;"><!--[if vml]><table align="center" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]-->
+																			<!--[if !vml]><!-->
+																			<table class="icons-inner" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;" cellpadding="0" cellspacing="0" role="presentation"><!--<![endif]-->
+																				<tr>
+																					<td style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: undefined; color: #1e0e4b; vertical-align: middle; letter-spacing: undefined; text-align: center;"><a href="http://designedwithbeefree.com/" target="_blank" style="color: #1e0e4b; text-decoration: none;">+34 942679435</a></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
                     </td>
                 </tr>
             </tbody>
@@ -1415,6 +1450,40 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
 																<div style="color: #3d3d3d;direction: ltr;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size: 12px;font-weight: 400;letter-spacing: 0px;line-height: 120%;text-align: justify;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;">
 																	<p style="margin: 0;box-sizing: border-box;line-height: inherit;">I. Negligence or service failures attributable to third parties.<br style="box-sizing: border-box;">II. Malfunction of swimming pools, recreational areas, or sports facilities, the use of which will be under the responsibility of the guest.<br style="box-sizing: border-box;">III. Thefts or losses suffered by guests on the property.<br style="box-sizing: border-box;">IV. Personal or material damage caused by force majeure or unforeseen situations.<br style="box-sizing: border-box;">V. Disturbances due to noise from nearby construction.<br style="box-sizing: border-box;">VI. Cuts in the supply of water, gas, or electricity by suppliers.<br style="box-sizing: border-box;">VII. Delays in the repair of appliances and boilers by official technical services.</p>
 																</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+                    	<table class="row row-9" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff;">
+						<tbody>
+							<tr>
+								<td>
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; color: #000000; width: 750px; margin: 0 auto;" width="750">
+										<tbody>
+											<tr>
+												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
+													<table class="icons_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; text-align: center;">
+														<tr>
+															<td class="pad" style="vertical-align: middle; color: #1e0e4b; font-family: 'Inter', sans-serif; font-size: 15px; padding-bottom: 5px; padding-top: 5px; text-align: center;">
+																<table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="alignment" style="vertical-align: middle; text-align: center;"><!--[if vml]><table align="center" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]-->
+																			<!--[if !vml]><!-->
+																			<table class="icons-inner" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;" cellpadding="0" cellspacing="0" role="presentation"><!--<![endif]-->
+																				<tr>
+																					<td style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: undefined; color: #1e0e4b; vertical-align: middle; letter-spacing: undefined; text-align: center;"><a href="http://designedwithbeefree.com/" target="_blank" style="color: #1e0e4b; text-decoration: none;">+34 942679435</a></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																</table>
 															</td>
 														</tr>
 													</table>
