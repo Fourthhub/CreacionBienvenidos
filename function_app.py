@@ -1630,6 +1630,7 @@ def reservasHoy(arrivalStartDate, arrivalEndDate,token):
     try:
         response = requests.get(url, headers=headers)
         data = response.json()
+        
     except Exception as e:
         raise SyntaxError(f"Error al procesar la reserva: {e}")
     return data
