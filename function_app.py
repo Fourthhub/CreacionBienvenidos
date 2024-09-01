@@ -1571,8 +1571,8 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
         To('diegoechaure@gmail.com'),
         To('reservas@apartamentoscantabria.net'),
     ],
-        subject='Chekins de hoy',
-        html_content='<strong>Los bienvenidos de hoy en isla</strong>'
+        subject='📋🖨️ Chekins 🖨️📋',
+        html_content='<strong>Los bienvenidos de hoy</strong>'
     )
 
     attachment_I = Attachment()
