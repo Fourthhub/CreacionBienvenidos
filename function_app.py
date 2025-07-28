@@ -6,7 +6,7 @@ from io import BytesIO
 import requests
 from datetime import datetime
 from weasyprint import HTML
-from mailersend import emails
+from mailersend import MailerSend
 import azure.functions as func
 
 URL_HOSTAWAY_TOKEN = "https://api.hostaway.com/v1/accessTokens"
@@ -1564,7 +1564,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
 
     # Inicializar MailerSend con tu token
     key = os.environ.get("MAILERSEND_API_KEY")
-    mailer = emails.Emails(api_key=key)
+    mailer = MailerSend(api_key=key)
 
     mail_data = {
         "from": {
