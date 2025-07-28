@@ -6,4 +6,3 @@ azure-functions
 WeasyPrint
 sendgrid
 requests
-mailersend
