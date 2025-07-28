@@ -6,8 +6,7 @@ from io import BytesIO
 import requests
 from datetime import datetime
 from weasyprint import HTML
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileType, Disposition,To
+from mailersend import emails
 import azure.functions as func
 
 URL_HOSTAWAY_TOKEN = "https://api.hostaway.com/v1/accessTokens"
@@ -1559,48 +1558,50 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     full_html_I += "</body></html>"
     full_html_S += "</body></html>"
 
-    # Generar el PDF desde HTML y mantenerlo en memoria
+    # Codificar los archivos HTML en base64
     encoded_file_I = base64.b64encode(full_html_I.encode()).decode()
     encoded_file_S = base64.b64encode(full_html_S.encode()).decode()
-    
 
-    # Crear el mensaje de correo con SendGrid
-    message = Mail(
-        from_email='reservas@apartamentoscantabria.net',
-        to_emails=[
-        To('diegoechaure@gmail.com'),
-        To('reservas@apartamentoscantabria.net'),
-    ],
-        subject='📋🖨️ Chekins 🖨️📋',
-        html_content='<strong>Los bienvenidos de hoy</strong>'
-    )
+    # Inicializar MailerSend con tu token
+    mail = emails.NewEmail('mlsn.dea18ac7abd367152b71e2871d6b6ef9ba3d473b89d2a3b6f46c9735a43f5b2a')
 
-    attachment_I = Attachment()
-    attachment_I.file_content = FileContent(encoded_file_I)
-    attachment_I.file_type = FileType('text/html')
-    attachment_I.file_name = FileName('ISLA.html')
-    attachment_I.disposition = Disposition('attachment')
+    # Configurar remitente
+    mail.set_from('reservas@apartamentoscantabria.net', 'Apartamentos Cantabria')
 
-    # Adjunto para apartamentos que empiezan con 'S'
-    attachment_S = Attachment()
-    attachment_S.file_content = FileContent(encoded_file_S)
-    attachment_S.file_type = FileType('text/html')
-    attachment_S.file_name = FileName('SOMO.html')
-    attachment_S.disposition = Disposition('attachment')
+    # Destinatarios
+    mail.set_to([
+        {'email': 'diegoechaure@gmail.com', 'name': 'Diego'},
+        {'email': 'reservas@apartamentoscantabria.net', 'name': 'Reservas'}
+    ])
 
-    # Añadir ambos adjuntos al mensaje
-    message.add_attachment(attachment_I)
-    message.add_attachment(attachment_S)
+    # Asunto y contenido del correo
+    mail.set_subject('📋🖨️ Chekins 🖨️📋')
+    mail.set_html('<strong>Los bienvenidos de hoy</strong>')
+    mail.set_text('Los bienvenidos de hoy')  # Requerido por MailerSend
 
-    
+    # Adjuntar archivos HTML
+    mail.set_attachments([
+        {
+            "content": encoded_file_I,
+            "filename": "ISLA.html",
+            "type": "text/html",
+            "disposition": "attachment"
+        },
+        {
+            "content": encoded_file_S,
+            "filename": "SOMO.html",
+            "type": "text/html",
+            "disposition": "attachment"
+        }
+    ])
+
+    # Enviar el correo
     try:
-        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-        response = sg.send(message)
+        response = mail.send()
         print(response.status_code)
-        print(response.body)
-        print(response.headers)
+        print(response.json())
     except Exception as e:
-         logging.error(f"Error en la función: {str(e)}")
+        logging.error(f"Error enviando correo con MailerSend: {str(e)}")
 
 def obtener_acceso_hostaway():
     try:
