@@ -6,7 +6,8 @@ from io import BytesIO
 import requests
 from datetime import datetime
 from weasyprint import HTML
-from mailersend import emails
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileType, Disposition,To
 import azure.functions as func
 
 URL_HOSTAWAY_TOKEN = "https://api.hostaway.com/v1/accessTokens"
@@ -1558,60 +1559,48 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     full_html_I += "</body></html>"
     full_html_S += "</body></html>"
 
-    # Codificar los archivos HTML en base64
-    encoded_file_I = base64.b64encode(full_html_I.encode("utf-8")).decode("utf-8")
-    encoded_file_S = base64.b64encode(full_html_S.encode("utf-8")).decode("utf-8")
-
-    # Inicializar MailerSend con tu token
-    key = os.environ.get("MAILERSEND_API_KEY")
-    mailer = emails.NewEmail(key)
-
-    mail_from = {
-    "name": "Apartamentos Cantabria",
-    "email": "diegoechaure@gmail.com"
-}
-    mail_body = {}
-    mailer.set_mail_from(mail_from, mail_body)
+    # Generar el PDF desde HTML y mantenerlo en memoria
+    encoded_file_I = base64.b64encode(full_html_I.encode()).decode()
+    encoded_file_S = base64.b64encode(full_html_S.encode()).decode()
     
-# To
-    recipients = [
-    {"name": "Diego", "email": "diegoechaure@gmail.com"}
-    ]
-    mailer.set_mail_to(recipients, mail_body)
+
+    # Crear el mensaje de correo con SendGrid
+    message = Mail(
+        from_email='reservas@apartamentoscantabria.net',
+        to_emails=[
+        To('diegoechaure@gmail.com'),
+        To('reservas@apartamentoscantabria.net'),
+    ],
+        subject='📋🖨️ Chekins 🖨️📋',
+        html_content='<strong>Los bienvenidos de hoy</strong>'
+    )
+
+    attachment_I = Attachment()
+    attachment_I.file_content = FileContent(encoded_file_I)
+    attachment_I.file_type = FileType('text/html')
+    attachment_I.file_name = FileName('ISLA.html')
+    attachment_I.disposition = Disposition('attachment')
+
+    # Adjunto para apartamentos que empiezan con 'S'
+    attachment_S = Attachment()
+    attachment_S.file_content = FileContent(encoded_file_S)
+    attachment_S.file_type = FileType('text/html')
+    attachment_S.file_name = FileName('SOMO.html')
+    attachment_S.disposition = Disposition('attachment')
+
+    # Añadir ambos adjuntos al mensaje
+    message.add_attachment(attachment_I)
+    message.add_attachment(attachment_S)
+
     
-    # Subject & Content
-    mailer.set_subject("📋🖨️ Chekins 🖨️📋", mail_body)
-    mailer.set_html_content("<strong>Los bienvenidos de hoy</strong>", mail_body)
-    mailer.set_plaintext_content("Los bienvenidos de hoy", mail_body)
-
-    # Reply-to (opcional)
-    reply_to = [
-        {"name": "Diego", "email": "diegoechaure@gmail.com"}
-    ]
-    mailer.set_reply_to(reply_to, mail_body)
-
-    # Attachments
-    mailer.set_attachments([
-        {
-            "content": encoded_file_I,
-            "type": "text/html",
-            "filename": "ISLA.html",
-            "disposition": "attachment"
-        },
-        {
-            "content": encoded_file_S,
-            "type": "text/html",
-            "filename": "SOMO.html",
-            "disposition": "attachment"
-        }
-    ], mail_body)
-
-    logging.info("email construido")
     try:
-        response = mailer.send(mail_body)
-        logging.info(response)
+        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        response = sg.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
     except Exception as e:
-        logging.error(f"Error enviando correo con MailerSend: {str(e)}")
+         logging.error(f"Error en la función: {str(e)}")
 
 def obtener_acceso_hostaway():
     try:
@@ -1685,10 +1674,7 @@ def hayMascota(token,idReserva):
               use_monitor=False) 
 def crecionBienvenido(myTimer: func.TimerRequest) -> None:
     token = obtener_acceso_hostaway()
-    logging.info("Empezando")
-    
     hoy = datetime.now().strftime('%Y-%m-%d')
     reservas= reservasHoy(hoy,hoy,token)
-    logging.info("Reservas obtenidas")
     enviarMail(reservas,token)
     logging.info('Python timer trigger function executed.')
