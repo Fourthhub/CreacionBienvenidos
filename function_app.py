@@ -1596,8 +1596,6 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     logging.info("email construido")
     try:
         response = mailer.send(mail_data)
-        print(response.status_code)
-        print(response.json())
     except Exception as e:
         logging.error(f"Error enviando correo con MailerSend: {str(e)}")
 
