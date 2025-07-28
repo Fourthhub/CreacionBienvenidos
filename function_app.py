@@ -1561,50 +1561,50 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
 
     full_html_I += "</body></html>"
     full_html_S += "</body></html>"
-	encoded_file_I = base64.b64encode(full_html_I.encode()).decode()
-	encoded_file_S = base64.b64encode(full_html_S.encode()).decode()
 
-	# Inicializar MailerSend
-	mail = emails.NewEmail('mlsn.dea18ac7abd367152b71e2871d6b6ef9ba3d473b89d2a3b6f46c9735a43f5b2a')
+    encoded_file_I = base64.b64encode(full_html_I.encode()).decode()
+    encoded_file_S = base64.b64encode(full_html_S.encode()).decode()
 
-	# Configurar remitente
-	mail.set_from('reservas@apartamentoscantabria.net', 'Apartamentos Cantabria')
+    # Inicializar MailerSend
+    mail = emails.NewEmail('mlsn.dea18ac7abd367152b71e2871d6b6ef9ba3d473b89d2a3b6f46c9735a43f5b2a')
 
-	# Destinatarios
-	mail.set_to([
-		{'email': 'diegoechaure@gmail.com', 'name': 'Diego'},
-		{'email': 'reservas@apartamentoscantabria.net', 'name': 'Reservas'}
-	])
+    # Configurar remitente
+    mail.set_from('reservas@apartamentoscantabria.net', 'Apartamentos Cantabria')
 
-	# Asunto y contenido
-	mail.set_subject('📋🖨️ Chekins 🖨️📋')
-	mail.set_html('<strong>Los bienvenidos de hoy</strong>')
-	mail.set_text('Los bienvenidos de hoy')  # MailerSend lo requiere
+    # Destinatarios
+    mail.set_to([
+        {'email': 'diegoechaure@gmail.com', 'name': 'Diego'},
+        {'email': 'reservas@apartamentoscantabria.net', 'name': 'Reservas'}
+    ])
 
-	# Adjuntos
-	mail.set_attachments([
-		{
-			"content": encoded_file_I,
-			"filename": "ISLA.html",
-			"type": "text/html",
-			"disposition": "attachment"
-		},
-		{
-			"content": encoded_file_S,
-			"filename": "SOMO.html",
-			"type": "text/html",
-			"disposition": "attachment"
-		}
-	])
+    # Asunto y contenido
+    mail.set_subject('📋🖨️ Chekins 🖨️📋')
+    mail.set_html('<strong>Los bienvenidos de hoy</strong>')
+    mail.set_text('Los bienvenidos de hoy')  # MailerSend lo requiere
 
-	# Envío y control de errores
-	try:
-		response = mail.send()
-		print(response.status_code)
-		print(response.json())
-	except Exception as e:
-		logging.error(f"Error enviando correo con MailerSend: {str(e)}")
+    # Adjuntos
+    mail.set_attachments([
+        {
+            "content": encoded_file_I,
+            "filename": "ISLA.html",
+            "type": "text/html",
+            "disposition": "attachment"
+        },
+        {
+            "content": encoded_file_S,
+            "filename": "SOMO.html",
+            "type": "text/html",
+            "disposition": "attachment"
+        }
+    ])
 
+    # Envío y control de errores
+    try:
+        response = mail.send()
+        print(response.status_code)
+        print(response.json())
+    except Exception as e:
+        logging.error(f"Error enviando correo con MailerSend: {str(e)}")
 def obtener_acceso_hostaway():
     try:
         payload = {
