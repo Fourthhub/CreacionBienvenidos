@@ -6,4 +6,4 @@ azure-functions
 WeasyPrint
 sendgrid
 requests
-mailersend
+mailersend==0.5.2
