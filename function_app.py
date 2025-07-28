@@ -1570,8 +1570,9 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     "name": "Apartamentos Cantabria",
     "email": "reservas@apartamentoscantabria.net"
 }
-    mailer.set_mail_from(mail_from, mail_body)
     mail_body = {}
+    mailer.set_mail_from(mail_from, mail_body)
+    
 # To
     recipients = [
     {"name": "Diego", "email": "diegoechaure@gmail.com"},
