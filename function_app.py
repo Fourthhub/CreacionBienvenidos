@@ -1563,7 +1563,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     encoded_file_S = base64.b64encode(full_html_S.encode()).decode()
 
     # Inicializar MailerSend con tu token
-    mail = emails.NewEmail('')
+    mail = emails.NewEmail('mlsn.dea18ac7abd367152b71e2871d6b6ef9ba3d473b89d2a3b6f46c9735a43f5b2a')
 
     # Configurar remitente
     mail.set_from('reservas@apartamentoscantabria.net', 'Apartamentos Cantabria')
