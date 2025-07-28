@@ -1566,23 +1566,52 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     key = os.environ.get("MAILERSEND_API_KEY")
     mailer = emails.NewEmail(key)
 
-    mail_data = {
-    "from": {
-        "email": "reservas@apartamentoscantabria.net",
-        "name": "Apartamentos Cantabria"
-    },
-    "to": [
-        {"email": "diegoechaure@gmail.com", "name": "Diego"},
-        {"email": "reservas@apartamentoscantabria.net", "name": "Reservas"}
-    ],
-    "subject": "📋🖨️ Chekins 🖨️📋",
-    "text": "Los bienvenidos de hoy",
-    "html": "<strong>Los bienvenidos de hoy</strong>"
-	}
-    
+    mail_from = {
+    "name": "Apartamentos Cantabria",
+    "email": "reservas@apartamentoscantabria.net"
+}
+    mailer.set_mail_from(mail_from, mail_body)
+
+# To
+    recipients = [
+    {"name": "Diego", "email": "diegoechaure@gmail.com"},
+    {"name": "Reservas", "email": "reservas@apartamentoscantabria.net"}
+    ]
+    mailer.set_mail_to(recipients, mail_body)
+    mail_body = {}
+    # Subject & Content
+    mailer.set_subject("📋🖨️ Chekins 🖨️📋", mail_body)
+    mailer.set_html_content("<strong>Los bienvenidos de hoy</strong>", mail_body)
+    mailer.set_plaintext_content("Los bienvenidos de hoy", mail_body)
+
+    # Reply-to (opcional)
+    reply_to = [
+        {"name": "Reservas", "email": "reservas@apartamentoscantabria.net"}
+    ]
+    mailer.set_reply_to(reply_to, mail_body)
+
+    # Attachments
+    mailer.set_attachments([
+        {
+            "content": encoded_file_I,
+            "type": "text/html",
+            "filename": "ISLA.html",
+            "disposition": "attachment"
+        },
+        {
+            "content": encoded_file_S,
+            "type": "text/html",
+            "filename": "SOMO.html",
+            "disposition": "attachment"
+        }
+    ], mail_body)
+
+# API key
+    mailer.set_api_key("TU_API_KEY")
+
     logging.info("email construido")
     try:
-        response = mailer.send(mail_data)
+        response = mailer.send(mail_body)
     except Exception as e:
         logging.error(f"Error enviando correo con MailerSend: {str(e)}")
 
