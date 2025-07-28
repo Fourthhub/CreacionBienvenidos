@@ -1567,32 +1567,19 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     mailer = emails.NewEmail(key)
 
     mail_data = {
-        "from": {
-            "email": "reservas@apartamentoscantabria.net",
-            "name": "Apartamentos Cantabria"
-        },
-        "to": [
-            {"email": "diegoechaure@gmail.com", "name": "Diego"},
-            {"email": "reservas@apartamentoscantabria.net", "name": "Reservas"}
-        ],
-        "subject": "📋🖨️ Chekins 🖨️📋",
-        "text": "Los bienvenidos de hoy",
-        "html": "<strong>Los bienvenidos de hoy</strong>",
-        "attachments": [
-            {
-                "content": encoded_file_I,
-                "filename": "ISLA.html",
-                "type": "text/html",
-                "disposition": "attachment"
-            },
-            {
-                "content": encoded_file_S,
-                "filename": "SOMO.html",
-                "type": "text/html",
-                "disposition": "attachment"
-            }
-        ]
-    }
+    "from": {
+        "email": "reservas@apartamentoscantabria.net",
+        "name": "Apartamentos Cantabria"
+    },
+    "to": [
+        {"email": "diegoechaure@gmail.com", "name": "Diego"},
+        {"email": "reservas@apartamentoscantabria.net", "name": "Reservas"}
+    ],
+    "subject": "📋🖨️ Chekins 🖨️📋",
+    "text": "Los bienvenidos de hoy",
+    "html": "<strong>Los bienvenidos de hoy</strong>"
+	}
+    
     logging.info("email construido")
     try:
         response = mailer.send(mail_data)
