@@ -1607,9 +1607,6 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
         }
     ], mail_body)
 
-# API key
-    mailer.set_api_key("TU_API_KEY")
-
     logging.info("email construido")
     try:
         response = mailer.send(mail_body)
