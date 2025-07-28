@@ -1564,7 +1564,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
 
     # Inicializar MailerSend con tu token
     key = os.environ.get("MAILERSEND_API_KEY")
-    mailer = emails.NewEmail(api_key=key)
+    mailer = emails.NewEmail(key)
 
     mail_data = {
         "from": {
