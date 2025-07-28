@@ -1575,7 +1575,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     
 # To
     recipients = [
-    {"name": "Reservas", "email": "reservas@apartamentoscantabria.net"}
+    {"name": "Diego", "email": "diegoechaure@gmail.com"}
     ]
     mailer.set_mail_to(recipients, mail_body)
     
