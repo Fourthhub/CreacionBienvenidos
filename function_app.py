@@ -1570,7 +1570,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     "name": "Apartamentos Cantabria",
     "email": "reservas@apartamentoscantabria.net"
 }
-    mail_body = {"grewrewerew"}
+    mail_body = {}
     mailer.set_mail_from(mail_from, mail_body)
     
 # To
@@ -1610,6 +1610,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     logging.info("email construido")
     try:
         response = mailer.send(mail_body)
+        logging.info(response)
     except Exception as e:
         logging.error(f"Error enviando correo con MailerSend: {str(e)}")
 
