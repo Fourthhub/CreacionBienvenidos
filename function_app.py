@@ -1593,7 +1593,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
             }
         ]
     }
-
+    logging.info("email construido")
     try:
         response = mailer.send(mail_data)
         print(response.status_code)
@@ -1673,7 +1673,10 @@ def hayMascota(token,idReserva):
               use_monitor=False) 
 def crecionBienvenido(myTimer: func.TimerRequest) -> None:
     token = obtener_acceso_hostaway()
+    logging.info("Empezando")
+    
     hoy = datetime.now().strftime('%Y-%m-%d')
     reservas= reservasHoy(hoy,hoy,token)
+    logging.info("Reservas obtenidas")
     enviarMail(reservas,token)
     logging.info('Python timer trigger function executed.')
