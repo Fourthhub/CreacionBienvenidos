@@ -1559,8 +1559,8 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     full_html_S += "</body></html>"
 
     # Codificar los archivos HTML en base64
-    encoded_file_I = base64.b64encode(full_html_I.encode()).decode()
-    encoded_file_S = base64.b64encode(full_html_S.encode()).decode()
+    encoded_file_I = base64.b64encode(full_html_I.encode("utf-8")).decode("utf-8")
+    encoded_file_S = base64.b64encode(full_html_S.encode("utf-8")).decode("utf-8")
 
     # Inicializar MailerSend con tu token
     key = os.environ.get("MAILERSEND_API_KEY")
@@ -1568,7 +1568,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
 
     mail_from = {
     "name": "Apartamentos Cantabria",
-    "email": "reservas@apartamentoscantabria.net"
+    "email": "diegoechaure@gmail.com"
 }
     mail_body = {}
     mailer.set_mail_from(mail_from, mail_body)
@@ -1586,7 +1586,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
 
     # Reply-to (opcional)
     reply_to = [
-        {"name": "Reservas", "email": "reservas@apartamentoscantabria.net"}
+        {"name": "Diego", "email": "diegoechaure@gmail.com"}
     ]
     mailer.set_reply_to(reply_to, mail_body)
 
