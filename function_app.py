@@ -1571,14 +1571,14 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     "email": "reservas@apartamentoscantabria.net"
 }
     mailer.set_mail_from(mail_from, mail_body)
-
+    mail_body = {}
 # To
     recipients = [
     {"name": "Diego", "email": "diegoechaure@gmail.com"},
     {"name": "Reservas", "email": "reservas@apartamentoscantabria.net"}
     ]
     mailer.set_mail_to(recipients, mail_body)
-    mail_body = {}
+    
     # Subject & Content
     mailer.set_subject("📋🖨️ Chekins 🖨️📋", mail_body)
     mailer.set_html_content("<strong>Los bienvenidos de hoy</strong>", mail_body)
