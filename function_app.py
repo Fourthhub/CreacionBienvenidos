@@ -1574,8 +1574,8 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
             "https://api.sendpulse.com/oauth/access_token",
             data={
                 "grant_type": "client_credentials",
-                "client_id": os.environ.get("75510a3b4821c413ad8ec42297856a41"),
-                "client_secret": os.environ.get("8110194a21fa751d2187c6b77b197a16"),
+                "client_id": "75510a3b4821c413ad8ec42297856a41",
+                "client_secret": "8110194a21fa751d2187c6b77b197a16",
             },
             timeout=20
         )
