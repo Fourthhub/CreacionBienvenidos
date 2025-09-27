@@ -1559,48 +1559,63 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     full_html_I += "</body></html>"
     full_html_S += "</body></html>"
 
-    # Generar el PDF desde HTML y mantenerlo en memoria
+   # Generar el PDF desde HTML y mantenerlo en memoria
     encoded_file_I = base64.b64encode(full_html_I.encode()).decode()
     encoded_file_S = base64.b64encode(full_html_S.encode()).decode()
-    
 
-    # Crear el mensaje de correo con SendGrid
-    message = Mail(
-        from_email='reservas@apartamentoscantabria.net',
-        to_emails=[
-        To('diegoechaure@gmail.com'),
-        To('reservas@apartamentoscantabria.net'),
-    ],
-        subject='📋🖨️ Chekins 🖨️📋',
-        html_content='<strong>Los bienvenidos de hoy</strong>'
-    )
+# Envío con SendPulse vía API SMTP
 
-    attachment_I = Attachment()
-    attachment_I.file_content = FileContent(encoded_file_I)
-    attachment_I.file_type = FileType('text/html')
-    attachment_I.file_name = FileName('ISLA.html')
-    attachment_I.disposition = Disposition('attachment')
 
-    # Adjunto para apartamentos que empiezan con 'S'
-    attachment_S = Attachment()
-    attachment_S.file_content = FileContent(encoded_file_S)
-    attachment_S.file_type = FileType('text/html')
-    attachment_S.file_name = FileName('SOMO.html')
-    attachment_S.disposition = Disposition('attachment')
+    body_html_b64 = base64.b64encode(b"<strong>Los bienvenidos de hoy</strong>").decode("ascii")
 
-    # Añadir ambos adjuntos al mensaje
-    message.add_attachment(attachment_I)
-    message.add_attachment(attachment_S)
-
-    
     try:
-        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-        response = sg.send(message)
-        print(response.status_code)
-        print(response.body)
-        print(response.headers)
+        # OAuth2: obtener token
+        auth_resp = requests.post(
+            "https://api.sendpulse.com/oauth/access_token",
+            data={
+                "grant_type": "client_credentials",
+                "client_id": os.environ.get("75510a3b4821c413ad8ec42297856a41"),
+                "client_secret": os.environ.get("8110194a21fa751d2187c6b77b197a16"),
+            },
+            timeout=20
+        )
+        auth_resp.raise_for_status()
+        access_token = auth_resp.json()["access_token"]
+
+        payload = {
+            "email": {
+                "html": body_html_b64,                 # HTML del cuerpo en Base64
+                "text": "Los bienvenidos de hoy",
+                "subject": "📋🖨️ Chekins 🖨️📋",
+                "from": {"name": "Apartamentos Cantabria",
+                         "email": "reservas@apartamentoscantabria.net"},
+                "to": [
+                    {"name": "Diego", "email": "diegoechaure@gmail.com"},
+                    {"name": "Reservas", "email": "reservas@apartamentoscantabria.net"}
+                ],
+                # Adjuntos en Base64 (ya los tienes codificados arriba)
+                "attachments_binary": {
+                    "ISLA.html": encoded_file_I,
+                    "SOMO.html": encoded_file_S
+                }
+            }
+        }
+
+        resp = requests.post(
+            "https://api.sendpulse.com/smtp/emails",
+            json=payload,
+            headers={
+                "Authorization": f"Bearer {access_token}",
+                "Content-Type": "application/json"
+            },
+            timeout=30
+        )
+        print(resp.status_code)
+        print(resp.text)
+        print(resp.headers)
+
     except Exception as e:
-         logging.error(f"Error en la función: {str(e)}")
+        logging.error(f"Error enviando email con SendPulse: {str(e)}")
 
 def obtener_acceso_hostaway():
     try:
