@@ -1569,7 +1569,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     body_html_b64 = base64.b64encode(b"<strong>Los bienvenidos de hoy</strong>").decode("ascii")
 
     try:
-        # OAuth2: obtener token
+        logging.info("enviarMail: solicitando token OAuth SendPulse")
         auth_resp = requests.post(
             "https://api.sendpulse.com/oauth/access_token",
             data={
@@ -1579,9 +1579,12 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
             },
             timeout=20
         )
+        logging.info("enviarMail: SendPulse OAuth status_code=%s", getattr(auth_resp, "status_code", "N/A"))
         auth_resp.raise_for_status()
-        access_token = auth_resp.json()["access_token"]
+        access_token = auth_resp.json().get("access_token")
+        logging.info("enviarMail: token OAuth SendPulse obtenido correctamente (no se loguea el valor)")
 
+        # cambie a sendpulse y la cuenta es la de google.
         payload = {
             "email": {
                 "html": body_html_b64,                 # HTML del cuerpo en Base64
@@ -1600,6 +1603,8 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
                 }
             }
         }
+        logging.info("enviarMail: enviando email vía SendPulse SMTP API a %s destinatarios",
+                     len(payload["email"]["to"]))
 
         resp = requests.post(
             "https://api.sendpulse.com/smtp/emails",
@@ -1610,6 +1615,9 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
             },
             timeout=30
         )
+        logging.info("enviarMail: SendPulse envio status_code=%s", getattr(resp, "status_code", "N/A"))
+        logging.info("enviarMail: respuesta texto=%s", getattr(resp, "text", "")[:500])
+        logging.info("enviarMail: respuesta headers_keys=%s", list(getattr(resp, "headers", {}).keys()))
         print(resp.status_code)
         print(resp.text)
         print(resp.headers)
@@ -1618,6 +1626,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
         logging.error(f"Error enviando email con SendPulse: {str(e)}")
 
 def obtener_acceso_hostaway():
+    logging.info("obtener_acceso_hostaway: solicitando token a %s", URL_HOSTAWAY_TOKEN)
     try:
         payload = {
             "grant_type": "client_credentials",
@@ -1627,11 +1636,79 @@ def obtener_acceso_hostaway():
         }
         headers = {'Content-type': "application/x-www-form-urlencoded", 'Cache-control': "no-cache"}
         response = requests.post(URL_HOSTAWAY_TOKEN, data=payload, headers=headers)
-        response.raise_for_status()
-        return response.json()["access_token"]
+        logging.info("obtener_acceso_hostaway: status_code=%s", getattr(response, "status_code", "N/A"))
+        # No cambiamos comportamiento (no raise_for_status aquí)
+        token = response.json().get("access_token")
+        logging.info("obtener_acceso_hostaway: token recibido correctamente (no se loguea el valor)")
+        return token
     except requests.RequestException as e:
         logging.error(f"Error al obtener el token de acceso: {str(e)}")
         raise
+
+def reservasHoy(arrivalStartDate, arrivalEndDate,token):
+    url = f"https://api.hostaway.com/v1/reservations?arrivalStartDate={arrivalStartDate}&arrivalEndDate={arrivalEndDate}&includeResources=1&includePayments=1"
+    logging.info("reservasHoy: GET %s", url)
+    headers = {
+        'Authorization': f"Bearer {token}",
+        'Content-type': "application/json",
+        'Cache-control': "no-cache",
+    }
+    try:
+        response = requests.get(url, headers=headers)
+        logging.info("reservasHoy: status_code=%s", getattr(response, "status_code", "N/A"))
+        data = response.json()
+        total = len(data.get("result", []))
+        logging.info("reservasHoy: total reservas devueltas=%d", total)
+    except Exception as e:
+        logging.error("reservasHoy: error procesando respuesta: %s", str(e))
+        raise SyntaxError(f"Error al procesar la reserva: {e}")
+    return data
+
+def direccionListing(token,listingId):
+    url = f"https://api.hostaway.com/v1/listings/{listingId}?includeResources=1"
+    logging.info("direccionListing: GET %s", url)
+    headers = {
+        'Authorization': f"Bearer {token}",
+        'Content-type': "application/json",
+        'Cache-control': "no-cache",
+    }
+
+    response = requests.get(url, headers=headers)
+    logging.info("direccionListing: status_code=%s", getattr(response, "status_code", "N/A"))
+    data = response.json()
+    serie="A"
+    try:
+        for field in data['result']["customFieldValues"]:
+            if field.get("customFieldId")==57829:
+                mapped_value = value_mapping.get(field.get("value"), "A")  # Default a "A" si el valor no se encuentra en el mapeo
+                serie = mapped_value
+        addr = data['result'].get("address", "")
+        logging.info("direccionListing: listingId=%s serie=%s len(address)=%s", listingId, serie, len(addr) if addr is not None else "None")
+        return data['result']["address"],serie
+    except Exception as e:
+        logging.error("direccionListing: error parseando datos para listingId=%s -> %s", listingId, str(e))
+        return data.get('result', {}).get("address", ""), "A"
+
+def hayMascota(token,idReserva):
+    url= f"https://api.hostaway.com/v1/financeField/{idReserva}"
+    logging.info("hayMascota: GET %s", url)
+    headers = {
+        'Authorization': f"Bearer {token}",
+        'Content-type': "application/json",
+        'Cache-control': "no-cache",
+    }
+    try:
+        response = requests.get(url, headers=headers)
+        logging.info("hayMascota: status_code=%s", getattr(response, "status_code", "N/A"))
+        res_json = response.json()
+        data = res_json.get('result', [])
+        found = any(element.get('name') == "petFee" for element in data)
+        logging.info("hayMascota: idReserva=%s petFee=%s", idReserva, "SI" if found else "NO")
+        return found
+    except Exception as e:
+        logging.error("hayMascota: error idReserva=%s -> %s", idReserva, str(e))
+        return False
+
 
 def reservasHoy(arrivalStartDate, arrivalEndDate,token):
     
