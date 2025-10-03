@@ -1572,141 +1572,67 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     logging.info("has_pages -> ISLA=%s, SOMO=%s", has_pages_I, has_pages_S)
 
     # ... (resto: OAuth SendPulse, _send_single_attachment(...) y envíos condicionales)
-    # Envío con SendPulse vía API SMTP (particionado en correos ≤ ~1 MB)
-    body_html_b64 = base64.b64encode(b"<strong>Los bienvenidos de hoy</strong>").decode("ascii")
+   # Envío con SMTP2GO vía API (un solo correo con dos adjuntos)
+    # Nota: SMTP2GO usa /v3/email/send con API Key en cabecera 'X-Smtp2go-Api-Key'
+    # Doc: https://api.smtp2go.com/v3/email/send  (attachments: fileblob base64, mimetype)
+    #       Campos: sender, to[], subject, html_body, attachments[]
+    #       Límite tamaño total por email: 50 MB (contenido+adjuntos+cabeceras)
 
     try:
-        logging.info("enviarMail: solicitando token OAuth SendPulse")
-        auth_resp = requests.post(
-            "https://api.sendpulse.com/oauth/access_token",
-            data={
-                "grant_type": "client_credentials",
-                "client_id": "75510a3b4821c413ad8ec42297856a41",
-                "client_secret": "8110194a21fa751d2187c6b77b197a16",
-            },
-            timeout=20
-        )
-        logging.info("enviarMail: SendPulse OAuth status_code=%s", getattr(auth_resp, "status_code", "N/A"))
-        auth_resp.raise_for_status()
-        access_token = auth_resp.json().get("access_token")
-        logging.info("enviarMail: token OAuth SendPulse obtenido (valor no logueado)")
+        api_key = "api-B38B1017D51F4F92BCE5114B5C8926D3"
+        # Cuerpo del email (SMTP2GO espera HTML en texto plano, NO en base64)
+        html_body_text = "<strong>Los bienvenidos de hoy</strong>"
 
-        headers_sp = {
-            "Authorization": f"Bearer {access_token}",
-            "Content-Type": "application/json"
+        # Adjuntos: SMTP2GO requiere base64 en 'fileblob' + mimetype
+        attach_I = {
+            "filename": "ISLA.html",
+            "fileblob": base64.b64encode(full_html_I.encode("utf-8")).decode("ascii"),
+            "mimetype": "text/html"
+        }
+        attach_S = {
+            "filename": "SOMO.html",
+            "fileblob": base64.b64encode(full_html_S.encode("utf-8")).decode("ascii"),
+            "mimetype": "text/html"
         }
 
-        # ===== Helpers de envío particionado =====
+        # Métricas útiles de tamaño
+        b64_I_len = len(attach_I["fileblob"].encode("ascii"))
+        b64_S_len = len(attach_S["fileblob"].encode("ascii"))
+        logging.info("SMTP2GO: ISLA adjunto b64=%d bytes (%.2f KB)", b64_I_len, b64_I_len/1024.0)
+        logging.info("SMTP2GO: SOMO adjunto b64=%d bytes (%.2f KB)", b64_S_len, b64_S_len/1024.0)
 
-        MAX_EMAIL_BYTES = 1_000_000  # 1 "mega"
-        # Presupuesto para el adjunto en base64: restamos el cuerpo del email y un pequeño margen
-        OVERHEAD = len(body_html_b64) + 10_000  # margen JSON/cabeceras
-        ATTACH_LIMIT = max(100_000, MAX_EMAIL_BYTES - OVERHEAD)  # como mínimo 100KB por seguridad
-        logging.info("enviarMail: ATTACH_LIMIT=%d bytes (~%.2f KB)", ATTACH_LIMIT, ATTACH_LIMIT/1024.0)
+        # Construcción del payload según /v3/email/send
+        payload = {
+            "sender": "reservas@apartamentoscantabria.net",
+            "to": [
+                "diegoechaure@gmail.com",
+                "reservas@apartamentoscantabria.net"
+            ],
+            "subject": "📋🖨️ Chekins 🖨️📋",
+            "html_body": html_body_text,
+            "attachments": [attach_I, attach_S]
+        }
 
-        marker = "<div style='page-break-after: always;'></div>"
+        headers = {
+            "Content-Type": "application/json",
+            "X-Smtp2go-Api-Key": api_key,
+            "accept": "application/json"
+        }
 
-        def _pages_from_html(full_html: str) -> list:
-            """Obtiene páginas usando el separador; cada página termina con el 'marker'."""
-            parts = full_html.split(marker)
-            pages = [p + marker for p in parts if p]  # ignora vacíos del final
-            return pages
+        # Endpoint global (elige región automáticamente)
+        url = "https://api.smtp2go.com/v3/email/send"
 
-        def _wrap_html(label: str, pages_joined: str) -> str:
-            """Envuelve las páginas en un documento HTML válido (mantenemos tu título)."""
-            title = "Documento Multi-página I" if label == "ISLA" else "Documento Multi-página S"
-            return f"<html><head><title>{title}</title></head><body>{pages_joined}</body></html>"
+        logging.info("SMTP2GO: enviando email único con 2 adjuntos...")
+        resp = requests.post(url, json=payload, headers=headers, timeout=30)
+        logging.info("SMTP2GO: status_code=%s", getattr(resp, "status_code", "N/A"))
+        logging.info("SMTP2GO: respuesta=%s", getattr(resp, "text", "")[:800])
 
-        def _send_one_email(filename: str, html_str: str, subject_label: str):
-            """Envía un único correo con un adjunto (html en base64)."""
-            content_b64 = base64.b64encode(html_str.encode("utf-8")).decode("ascii")
-            payload = {
-                "email": {
-                    "html": body_html_b64,
-                    "text": "Los bienvenidos de hoy",
-                    "subject": f"📋🖨️ Chekins 🖨️📋 — {subject_label}",
-                    "from": {"name": "Apartamentos Cantabria",
-                             "email": "reservas@apartamentoscantabria.net"},
-                    "to": [
-                        {"name": "Diego", "email": "diegoechaure@gmail.com"},
-                        {"name": "Reservas", "email": "reservas@apartamentoscantabria.net"}
-                    ],
-                    "attachments_binary": {
-                        filename: content_b64
-                    }
-                }
-            }
-            approx_total = len(content_b64) + OVERHEAD
-            logging.info("enviarMail: [%s] adjunto=%s tamaño_b64=%d bytes (~%.2f KB) total_est=%d",
-                         subject_label, filename, len(content_b64), len(content_b64)/1024.0, approx_total)
-            resp_local = requests.post(
-                "https://api.sendpulse.com/smtp/emails",
-                json=payload,
-                headers=headers_sp,
-                timeout=30
-            )
-            logging.info("enviarMail: '%s' status_code=%s", filename, getattr(resp_local, "status_code", "N/A"))
-            logging.info("enviarMail: '%s' respuesta=%s", filename, getattr(resp_local, "text", "")[:500])
-            print(resp_local.status_code)
-            print(resp_local.text)
-            print(resp_local.headers)
-
-        def _send_in_chunks(label: str, full_html: str):
-            """Parte el documento en varios correos, sin superar ~1MB por email."""
-            pages = _pages_from_html(full_html)
-            if not pages:
-                logging.info("enviarMail: %s sin páginas -> no se envía.", label)
-                return
-
-            batch_pages = []
-            email_count = 0
-
-            for idx, page in enumerate(pages, start=1):
-                # Probar si cabe la página en el batch actual
-                candidate_pages = "".join(batch_pages) + page
-                candidate_doc = _wrap_html(label, candidate_pages)
-                candidate_b64_len = len(base64.b64encode(candidate_doc.encode("utf-8")).decode("ascii"))
-
-                if candidate_b64_len + OVERHEAD <= ATTACH_LIMIT:
-                    # Cabe -> la añadimos al batch actual
-                    batch_pages.append(page)
-                else:
-                    # No cabe -> enviar el batch acumulado (si existe) y empezar nuevo batch con la página actual
-                    if batch_pages:
-                        email_count += 1
-                        html_to_send = _wrap_html(label, "".join(batch_pages))
-                        filename = f"{label}_{email_count:02d}.html"
-                        _send_one_email(filename, html_to_send, f"{label} {email_count:02d}")
-                        batch_pages = []
-
-                    # Ahora intentamos enviar la página sola; si aun así excede el límite, se envía igualmente (no partimos páginas)
-                    single_doc = _wrap_html(label, page)
-                    single_b64_len = len(base64.b64encode(single_doc.encode("utf-8")).decode("ascii"))
-                    if single_b64_len + OVERHEAD <= ATTACH_LIMIT:
-                        batch_pages.append(page)  # se agregará y enviará en el siguiente ciclo/final
-                    else:
-                        # Página individual supera el límite: avisamos y la enviamos sola
-                        logging.warning("enviarMail: %s página %d excede el límite por sí sola (%d bytes b64). Se envía sola.",
-                                        label, idx, single_b64_len)
-                        email_count += 1
-                        filename = f"{label}_{email_count:02d}.html"
-                        _send_one_email(filename, single_doc, f"{label} {email_count:02d}")
-
-            # Enviar el último batch si quedó algo
-            if batch_pages:
-                email_count += 1
-                html_to_send = _wrap_html(label, "".join(batch_pages))
-                filename = f"{label}_{email_count:02d}.html"
-                _send_one_email(filename, html_to_send, f"{label} {email_count:02d}")
-
-            logging.info("enviarMail: %s enviado en %d correo(s).", label, email_count)
-
-        # ===== Ejecutar envío particionado para ISLA y SOMO =====
-        _send_in_chunks("ISLA", full_html_I)
-        _send_in_chunks("SOMO", full_html_S)
+        print(resp.status_code)
+        print(resp.text)
+        print(resp.headers)
 
     except Exception as e:
-        logging.error("Error enviando email con SendPulse: %s", str(e))
+        logging.error("Error enviando email con SMTP2GO: %s", str(e))
 
 def obtener_acceso_hostaway():
     logging.info("obtener_acceso_hostaway: solicitando token a %s", URL_HOSTAWAY_TOKEN)
