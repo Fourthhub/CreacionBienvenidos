@@ -1572,7 +1572,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     logging.info("has_pages -> ISLA=%s, SOMO=%s", has_pages_I, has_pages_S)
 
     # ... (resto: OAuth SendPulse, _send_single_attachment(...) y envíos condicionales)
-    # Envío con SendPulse vía API SMTP (dos correos, uno por archivo)
+    # Envío con SendPulse vía API SMTP (particionado en correos ≤ ~1 MB)
     body_html_b64 = base64.b64encode(b"<strong>Los bienvenidos de hoy</strong>").decode("ascii")
 
     try:
@@ -1596,13 +1596,35 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
             "Content-Type": "application/json"
         }
 
-        # Helper mínimo para enviar un email con un único adjunto
-        def _send_single_attachment(filename: str, content_b64: str, label: str):
+        # ===== Helpers de envío particionado =====
+
+        MAX_EMAIL_BYTES = 1_000_000  # 1 "mega"
+        # Presupuesto para el adjunto en base64: restamos el cuerpo del email y un pequeño margen
+        OVERHEAD = len(body_html_b64) + 10_000  # margen JSON/cabeceras
+        ATTACH_LIMIT = max(100_000, MAX_EMAIL_BYTES - OVERHEAD)  # como mínimo 100KB por seguridad
+        logging.info("enviarMail: ATTACH_LIMIT=%d bytes (~%.2f KB)", ATTACH_LIMIT, ATTACH_LIMIT/1024.0)
+
+        marker = "<div style='page-break-after: always;'></div>"
+
+        def _pages_from_html(full_html: str) -> list:
+            """Obtiene páginas usando el separador; cada página termina con el 'marker'."""
+            parts = full_html.split(marker)
+            pages = [p + marker for p in parts if p]  # ignora vacíos del final
+            return pages
+
+        def _wrap_html(label: str, pages_joined: str) -> str:
+            """Envuelve las páginas en un documento HTML válido (mantenemos tu título)."""
+            title = "Documento Multi-página I" if label == "ISLA" else "Documento Multi-página S"
+            return f"<html><head><title>{title}</title></head><body>{pages_joined}</body></html>"
+
+        def _send_one_email(filename: str, html_str: str, subject_label: str):
+            """Envía un único correo con un adjunto (html en base64)."""
+            content_b64 = base64.b64encode(html_str.encode("utf-8")).decode("ascii")
             payload = {
                 "email": {
                     "html": body_html_b64,
                     "text": "Los bienvenidos de hoy",
-                    "subject": f"📋🖨️ Chekins 🖨️📋 — {label}",
+                    "subject": f"📋🖨️ Chekins 🖨️📋 — {subject_label}",
                     "from": {"name": "Apartamentos Cantabria",
                              "email": "reservas@apartamentoscantabria.net"},
                     "to": [
@@ -1614,8 +1636,9 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
                     }
                 }
             }
-            logging.info("enviarMail: enviando email '%s' (%s) a %s destinatarios",
-                         filename, label, len(payload["email"]["to"]))
+            approx_total = len(content_b64) + OVERHEAD
+            logging.info("enviarMail: [%s] adjunto=%s tamaño_b64=%d bytes (~%.2f KB) total_est=%d",
+                         subject_label, filename, len(content_b64), len(content_b64)/1024.0, approx_total)
             resp_local = requests.post(
                 "https://api.sendpulse.com/smtp/emails",
                 json=payload,
@@ -1628,17 +1651,59 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
             print(resp_local.text)
             print(resp_local.headers)
 
-        # Envía ISLA si tiene contenido real
-        if has_pages_I:
-            _send_single_attachment("ISLA.html", encoded_file_I, "ISLA")
-        else:
-            logging.info("enviarMail: ISLA sin páginas -> no se envía correo.")
+        def _send_in_chunks(label: str, full_html: str):
+            """Parte el documento en varios correos, sin superar ~1MB por email."""
+            pages = _pages_from_html(full_html)
+            if not pages:
+                logging.info("enviarMail: %s sin páginas -> no se envía.", label)
+                return
 
-        # Envía SOMO si tiene contenido real
-        if has_pages_S:
-            _send_single_attachment("SOMO.html", encoded_file_S, "SOMO")
-        else:
-            logging.info("enviarMail: SOMO sin páginas -> no se envía correo.")
+            batch_pages = []
+            email_count = 0
+
+            for idx, page in enumerate(pages, start=1):
+                # Probar si cabe la página en el batch actual
+                candidate_pages = "".join(batch_pages) + page
+                candidate_doc = _wrap_html(label, candidate_pages)
+                candidate_b64_len = len(base64.b64encode(candidate_doc.encode("utf-8")).decode("ascii"))
+
+                if candidate_b64_len + OVERHEAD <= ATTACH_LIMIT:
+                    # Cabe -> la añadimos al batch actual
+                    batch_pages.append(page)
+                else:
+                    # No cabe -> enviar el batch acumulado (si existe) y empezar nuevo batch con la página actual
+                    if batch_pages:
+                        email_count += 1
+                        html_to_send = _wrap_html(label, "".join(batch_pages))
+                        filename = f"{label}_{email_count:02d}.html"
+                        _send_one_email(filename, html_to_send, f"{label} {email_count:02d}")
+                        batch_pages = []
+
+                    # Ahora intentamos enviar la página sola; si aun así excede el límite, se envía igualmente (no partimos páginas)
+                    single_doc = _wrap_html(label, page)
+                    single_b64_len = len(base64.b64encode(single_doc.encode("utf-8")).decode("ascii"))
+                    if single_b64_len + OVERHEAD <= ATTACH_LIMIT:
+                        batch_pages.append(page)  # se agregará y enviará en el siguiente ciclo/final
+                    else:
+                        # Página individual supera el límite: avisamos y la enviamos sola
+                        logging.warning("enviarMail: %s página %d excede el límite por sí sola (%d bytes b64). Se envía sola.",
+                                        label, idx, single_b64_len)
+                        email_count += 1
+                        filename = f"{label}_{email_count:02d}.html"
+                        _send_one_email(filename, single_doc, f"{label} {email_count:02d}")
+
+            # Enviar el último batch si quedó algo
+            if batch_pages:
+                email_count += 1
+                html_to_send = _wrap_html(label, "".join(batch_pages))
+                filename = f"{label}_{email_count:02d}.html"
+                _send_one_email(filename, html_to_send, f"{label} {email_count:02d}")
+
+            logging.info("enviarMail: %s enviado en %d correo(s).", label, email_count)
+
+        # ===== Ejecutar envío particionado para ISLA y SOMO =====
+        _send_in_chunks("ISLA", full_html_I)
+        _send_in_chunks("SOMO", full_html_S)
 
     except Exception as e:
         logging.error("Error enviando email con SendPulse: %s", str(e))
