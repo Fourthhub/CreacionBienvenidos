@@ -1504,7 +1504,6 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
 </html>"""
     full_html_I = "<html><head><title>Documento Multi-página I</title></head><body>"
     full_html_S = "<html><head><title>Documento Multi-página S</title></head><body>"
-    
 
     for reserva in reservas["result"]:
         if reserva["status"] != "modified" and reserva["status"] != "new":
@@ -1555,25 +1554,16 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
             elif reserva["listingName"].startswith('S'):
                 full_html_S += formatted_html
 
-# ⬇️ SOLO AQUÍ: métricas, detección y envío por separado
-    raw_I_bytes = len(full_html_I.encode("utf-8"))
-    raw_S_bytes = len(full_html_S.encode("utf-8"))
-    logging.info("ISLA raw=%d KB, SOMO raw=%d KB", raw_I_bytes // 1024, raw_S_bytes // 1024)
+    full_html_I += "</body></html>"
+    full_html_S += "</body></html>"
 
-    encoded_file_I = base64.b64encode(full_html_I.encode("utf-8")).decode("ascii")
-    encoded_file_S = base64.b64encode(full_html_S.encode("utf-8")).decode("ascii")
+   # Generar el PDF desde HTML y mantenerlo en memoria
+    encoded_file_I = base64.b64encode(full_html_I.encode()).decode()
+    encoded_file_S = base64.b64encode(full_html_S.encode()).decode()
 
-    b64_I_bytes = len(encoded_file_I.encode("ascii"))
-    b64_S_bytes = len(encoded_file_S.encode("ascii"))
-    logging.info("ISLA b64=%d KB, SOMO b64=%d KB (Base64 ~+33%%)", b64_I_bytes // 1024, b64_S_bytes // 1024)
+# Envío con SendPulse vía API SMTP
 
-# Detector de contenido real (si quieres mantenerlo por seguridad)
-    has_pages_I = "page-break-after" in full_html_I
-    has_pages_S = "page-break-after" in full_html_S
-    logging.info("has_pages -> ISLA=%s, SOMO=%s", has_pages_I, has_pages_S)
 
-    # ... (resto: OAuth SendPulse, _send_single_attachment(...) y envíos condicionales)
-    # Envío con SendPulse vía API SMTP (dos correos, uno por archivo)
     body_html_b64 = base64.b64encode(b"<strong>Los bienvenidos de hoy</strong>").decode("ascii")
 
     try:
@@ -1590,59 +1580,75 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
         logging.info("enviarMail: SendPulse OAuth status_code=%s", getattr(auth_resp, "status_code", "N/A"))
         auth_resp.raise_for_status()
         access_token = auth_resp.json().get("access_token")
-        logging.info("enviarMail: token OAuth SendPulse obtenido (valor no logueado)")
+        logging.info("enviarMail: token OAuth SendPulse obtenido correctamente (no se loguea el valor)")
 
         headers_sp = {
             "Authorization": f"Bearer {access_token}",
             "Content-Type": "application/json"
         }
 
-        # Helper mínimo para enviar un email con un único adjunto
-        def _send_single_attachment(filename: str, content_b64: str, label: str):
-            payload = {
-                "email": {
-                    "html": body_html_b64,
-                    "text": "Los bienvenidos de hoy",
-                    "subject": f"📋🖨️ Chekins 🖨️📋 — {label}",
-                    "from": {"name": "Apartamentos Cantabria",
-                             "email": "reservas@apartamentoscantabria.net"},
-                    "to": [
-                        {"name": "Diego", "email": "diegoechaure@gmail.com"},
-                        {"name": "Reservas", "email": "reservas@apartamentoscantabria.net"}
-                    ],
-                    "attachments_binary": {
-                        filename: content_b64
-                    }
+        # --- Email 1: ISLA.html ---
+        payload_I = {
+            "email": {
+                "html": body_html_b64,
+                "text": "Los bienvenidos de hoy",
+                "subject": "📋🖨️ Chekins 🖨️📋",
+                "from": {"name": "Apartamentos Cantabria",
+                         "email": "reservas@apartamentoscantabria.net"},
+                "to": [
+                    {"name": "Diego", "email": "diegoechaure@gmail.com"},
+                    {"name": "Reservas", "email": "reservas@apartamentoscantabria.net"}
+                ],
+                "attachments_binary": {
+                    "ISLA.html": encoded_file_I
                 }
             }
-            logging.info("enviarMail: enviando email '%s' (%s) a %s destinatarios",
-                         filename, label, len(payload["email"]["to"]))
-            resp_local = requests.post(
-                "https://api.sendpulse.com/smtp/emails",
-                json=payload,
-                headers=headers_sp,
-                timeout=30
-            )
-            logging.info("enviarMail: '%s' status_code=%s", filename, getattr(resp_local, "status_code", "N/A"))
-            logging.info("enviarMail: '%s' respuesta=%s", filename, getattr(resp_local, "text", "")[:500])
-            print(resp_local.status_code)
-            print(resp_local.text)
-            print(resp_local.headers)
+        }
+        logging.info("enviarMail: enviando correo ISLA (1/2)")
+        resp_I = requests.post(
+            "https://api.sendpulse.com/smtp/emails",
+            json=payload_I,
+            headers=headers_sp,
+            timeout=30
+        )
+        logging.info("enviarMail: ISLA status_code=%s", getattr(resp_I, "status_code", "N/A"))
+        logging.info("enviarMail: ISLA respuesta=%s", getattr(resp_I, "text", "")[:500])
+        print(resp_I.status_code)
+        print(resp_I.text)
+        print(resp_I.headers)
 
-        # Envía ISLA si tiene contenido real
-        if has_pages_I:
-            _send_single_attachment("ISLA.html", encoded_file_I, "ISLA")
-        else:
-            logging.info("enviarMail: ISLA sin páginas -> no se envía correo.")
-
-        # Envía SOMO si tiene contenido real
-        if has_pages_S:
-            _send_single_attachment("SOMO.html", encoded_file_S, "SOMO")
-        else:
-            logging.info("enviarMail: SOMO sin páginas -> no se envía correo.")
+        # --- Email 2: SOMO.html ---
+        payload_S = {
+            "email": {
+                "html": body_html_b64,
+                "text": "Los bienvenidos de hoy",
+                "subject": "📋🖨️ Chekins 🖨️📋",
+                "from": {"name": "Apartamentos Cantabria",
+                         "email": "reservas@apartamentoscantabria.net"},
+                "to": [
+                    {"name": "Diego", "email": "diegoechaure@gmail.com"},
+                    {"name": "Reservas", "email": "reservas@apartamentoscantabria.net"}
+                ],
+                "attachments_binary": {
+                    "SOMO.html": encoded_file_S
+                }
+            }
+        }
+        logging.info("enviarMail: enviando correo SOMO (2/2)")
+        resp_S = requests.post(
+            "https://api.sendpulse.com/smtp/emails",
+            json=payload_S,
+            headers=headers_sp,
+            timeout=30
+        )
+        logging.info("enviarMail: SOMO status_code=%s", getattr(resp_S, "status_code", "N/A"))
+        logging.info("enviarMail: SOMO respuesta=%s", getattr(resp_S, "text", "")[:500])
+        print(resp_S.status_code)
+        print(resp_S.text)
+        print(resp_S.headers)
 
     except Exception as e:
-        logging.error("Error enviando email con SendPulse: %s", str(e))
+        logging.error(f"Error enviando email con SendPulse: {str(e)}")
 
 def obtener_acceso_hostaway():
     logging.info("obtener_acceso_hostaway: solicitando token a %s", URL_HOSTAWAY_TOKEN)
