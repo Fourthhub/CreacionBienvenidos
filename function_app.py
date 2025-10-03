@@ -1502,7 +1502,8 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
 </body>
 
 </html>"""
-
+    full_html_I = "<html><head><title>Documento Multi-página I</title></head><body>"
+    full_html_S = "<html><head><title>Documento Multi-página S</title></head><body>"
     full_html_I += "</body></html>"
     full_html_S += "</body></html>"
 
