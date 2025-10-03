@@ -1503,26 +1503,27 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
 
 </html>"""
 
-    full_html_I = "<html><head><title>Documento Multi-página I</title></head><body>"
-    full_html_S = "<html><head><title>Documento Multi-página S</title></head><body>"
-     # --- Métricas antes de codificar ---
+    full_html_I += "</body></html>"
+    full_html_S += "</body></html>"
+
+# ⬇️ SOLO AQUÍ: métricas, detección y envío por separado
     raw_I_bytes = len(full_html_I.encode("utf-8"))
     raw_S_bytes = len(full_html_S.encode("utf-8"))
     logging.info("ISLA raw=%d KB, SOMO raw=%d KB", raw_I_bytes // 1024, raw_S_bytes // 1024)
 
-    # Generar el HTML como adjunto codificado en Base64
     encoded_file_I = base64.b64encode(full_html_I.encode("utf-8")).decode("ascii")
     encoded_file_S = base64.b64encode(full_html_S.encode("utf-8")).decode("ascii")
 
     b64_I_bytes = len(encoded_file_I.encode("ascii"))
     b64_S_bytes = len(encoded_file_S.encode("ascii"))
-    logging.info("ISLA b64=%d KB, SOMO b64=%d KB (Base64 añade ~33%%)", b64_I_bytes // 1024, b64_S_bytes // 1024)
+    logging.info("ISLA b64=%d KB, SOMO b64=%d KB (Base64 ~+33%%)", b64_I_bytes // 1024, b64_S_bytes // 1024)
 
-    # Pequeño detector de “contenido real”: buscamos page-breaks añadidos
+# Detector de contenido real (si quieres mantenerlo por seguridad)
     has_pages_I = "page-break-after" in full_html_I
     has_pages_S = "page-break-after" in full_html_S
     logging.info("has_pages -> ISLA=%s, SOMO=%s", has_pages_I, has_pages_S)
 
+    # ... (resto: OAuth SendPulse, _send_single_attachment(...) y envíos condicionales)
     # Envío con SendPulse vía API SMTP (dos correos, uno por archivo)
     body_html_b64 = base64.b64encode(b"<strong>Los bienvenidos de hoy</strong>").decode("ascii")
 
