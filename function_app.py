@@ -1535,7 +1535,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
             huespedes += """<p style="font-size: 16px;mso-line-height-alt: 14.399999999999999px;box-sizing: border-box;line-height: inherit;">""" + "+ 🐶</p>"
 
         huesped_mascota = str(reserva["numberOfGuests"]) + huespedes
-        for _ in range(1):
+        for _ in range(2):
             formatted_html = html.format(
                 Apartamento=reserva["listingName"],
                 Nombre=reserva["guestName"],
