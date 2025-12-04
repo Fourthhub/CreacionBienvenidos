@@ -1579,7 +1579,7 @@ du client.<br style="box-sizing: border-box;">III. Les vols ou pertes subis par 
     #       Límite tamaño total por email: 50 MB (contenido+adjuntos+cabeceras)
 
     try:
-         api_key = os.environ["smtp2go"]
+        api_key = os.environ["smtp2go"]
         # Cuerpo del email (SMTP2GO espera HTML en texto plano, NO en base64)
         html_body_text = "<strong>Los bienvenidos de hoy</strong>"
 
